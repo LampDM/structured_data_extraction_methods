@@ -44,6 +44,33 @@ def jewelry():
 pages=["Audi A6-rendered-again.html",
              "Volvo XC 40 D4 AWD momentum_ suvereno med najboljše v razredu - RTVSLO.si.html"]
 
+
+def intr(dom):
+ content = []
+ if isinstance(dom,html.HtmlElement):
+     ctag = dom.tag
+     if ctag == "p":
+         intr(dom.text)
+     elif ctag == "div":
+         for el in dom:
+             intr(el)
+     elif ctag == "figure":
+         for el in dom:
+             intr(el)
+     elif ctag == "img":
+        intr(dom.attrib['src'])
+     elif ctag == "article":
+         for el in dom:
+             intr(el)
+     elif ctag == "a":
+         intr(dom.attrib['href'])
+     else:
+         pass
+ else:
+     if dom is not None:
+         print(dom)
+
+
 for page in pages:
     doc = html.fromstring(open('../WebPages/rtvslo.si/{}'.format(page)).read())
 
@@ -55,21 +82,16 @@ for page in pages:
     subtitle = doc.xpath("/html/body/div[9]/div[3]/div/header/div[2]")[0].text
     lead = doc.xpath("/html/body/div[9]/div[3]/div/header/p")[0].text
     articlebody = doc.xpath("/html/body/div[9]/div[3]/div/div[2]")[0]
+    contentstext = ""
+    #print(title)
+    #print(subtitle)
+    #print(lead)
 
-    print(title)
-    print(subtitle)
-    print(lead)
-    for el in articlebody:
-        if el.tag == "article":
-            print(el.tag)
-            for c in el:
-                if c.tag == "p":
-                    print("  "+c.tag)
-                else:
-                    print("  "+c.tag)
-        else:
-            print(el.tag)
-    print(author)
-    print(publishedt)
+    print("interpreter")
+    intr(articlebody)
+
+    #print(contentstext)
+    #print(author)
+    #print(publishedt)
 
 
