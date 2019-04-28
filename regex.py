@@ -12,14 +12,14 @@ import sys
 import json
 
 # NOTE: regex patterns for rtvslo.si news page structure
-#       can we improve this?
-author_name_pattern = r'<div class="author-name">(.*?)</div>'
-publish_meta_pattern = r'\d{2}\.\s\w*\s\d{4}\s\w{2}\s\d{2}:\d{2}'  # example: DD. month YYYY ob HH:MM
-article_title_pattern = r'<h1>(.*)</h1>'  # this is not safe, but there is only one heading tag on news page
-article_subtitle_pattern = r'<div class="subtitle">(.*?)</div>'
-article_lead_pattern = r'<p class="lead">(.*?)</p>'
-article_content_pattern = r'<p class=\"Body\">(.*?)</p>|<p>(.*?)</p>'
-
+rtv_article_pattern = r'<div class=\"news-container (?:.*?)\">' +\
+                      r'[\s\S]+<h1>(?P<Title>.+)</h1>[\s\S]+' +\
+                      r'<div class=\"subtitle\">(?P<SubTitle>.+)' +\
+                      r'</div>[\s\S]*?<strong>(?P<Author>.*?)</strong>\|' +\
+                      r'\s(?P<PublishedTime>\d{2}\.\s\w*\s\d{4}\s\w{2}\s\d{2}:\d{2})[\s\S]+' +\
+                      r'<p class=\"lead\">(?P<Lead>.*?)</p>[\s\S]+' +\
+                      r'<article class=\"article\">[\s\S]*?(?P<Content><p>([\s\S]+)</p>|<p (?:.+?)>[\s\S]+</p>)' +\
+                      r'[\s\S]*</article>'
 
 # NOTE: regex pattern for overstock.com jewelry listing
 overstock_listing_pattern = r'<td valign=\"top\">[\s]+?<a [^<>]+><b>(?P<Title>.*?)</b></a>' +\
@@ -35,60 +35,23 @@ def to_json(payload: dict):
 
 
 def parse_rtv_content(file_path: str):
-    """ This is ugly. :( refactor?
-    """
-
-    def preprocess(html: str):
-        # return re.sub(r"^[\s\n\t]+", "", line, flags=re.MULTILINE)
-        return ''.join([line.strip() for line in html.splitlines() if line.strip()])
-
-    def remove_tags(line: str):
-        """ Clean retrieved content
+    def _remove_tags(pattern: str):
+        """ Replace html tags in pattern using re.
         """
-        return re.sub('<[^<>]+>', '', line)
+        return re.sub('<[^<>]+>', '', pattern)
 
-    def get_author_name(html: str):
-        return remove_tags(re.search(author_name_pattern, html).group(0)).strip()
-
-    def get_published_time(html: str):
-        return re.search(publish_meta_pattern, html).group(0).strip()
-
-    def get_title(html: str):
-        return remove_tags(re.search(article_title_pattern, html).group(0)).strip()
-
-    def get_subtitle(html: str):
-        return remove_tags(re.search(article_subtitle_pattern, html).group(0)).strip()
-
-    def get_lead(html: str):
-        return remove_tags(re.search(article_lead_pattern, html).group(0)).strip()
-
-    def get_content(html: str):
-        lines = list()
-
-        for group in re.findall(article_content_pattern, html):
-            filtered_group = list(filter(None, group))
-            if filtered_group:
-                lines.append(remove_tags(filtered_group[0]))
-
-        return ' '.join(filter(None, lines))
+    def _clean_data(match_result: dict):
+        match_result['Content'] = _remove_tags(match_result['Content'].replace('\t', '').replace('\n', '').strip())
+        return match_result
 
     with open(file_path, 'r', encoding="utf-8") as fp:
-        html_content = preprocess(fp.read())
-
-        payload = {
-            'Author': get_author_name(html_content),
-            'PublishedTime': get_published_time(html_content),
-            'Title': get_title(html_content),
-            'SubTitle': get_subtitle(html_content),
-            'Lead': get_lead(html_content),
-            'Content': get_content(html_content),
-        }
-
-        return to_json(payload)
+        html_content = fp.read()
+        match = re.search(rtv_article_pattern, html_content)
+        return to_json(_clean_data(match.groupdict()))
 
 
 def parse_overstock_content(file_path: str):
-    def clean_data(match_result: dict):
+    def _clean_data(match_result: dict):
         match_result['SavingPercent'] = match_result['SavingPercent'].strip().replace('(', '').replace(')', '')
         match_result['Content'] = match_result['Content'].strip().replace('\n', ' ').replace('\t', ' ')
         return match_result
@@ -96,7 +59,7 @@ def parse_overstock_content(file_path: str):
     with open(file_path, 'r', encoding="latin-1") as fp:
         html_content = fp.read()
         payload = {
-            'listing': [clean_data(match.groupdict()) for match in re.finditer(overstock_listing_pattern, html_content)]
+            'listing': [_clean_data(match.groupdict()) for match in re.finditer(overstock_listing_pattern, html_content)]
         }
 
         return to_json(payload)
