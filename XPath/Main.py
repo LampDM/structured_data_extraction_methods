@@ -41,8 +41,10 @@ def jewelry():
             except Exception as ex:
                 pass
 
+vra="Volvo XC 40-rendered-again.html"
+volvo ="Volvo XC 40 D4 AWD momentum_ suvereno med najboljše v razredu - RTVSLO.si.html"
 pages=["Audi A6-rendered-again.html",
-             "Volvo XC 40 D4 AWD momentum_ suvereno med najboljše v razredu - RTVSLO.si.html"]
+             volvo]
 
 
 def intr(dom):
@@ -83,9 +85,11 @@ for page in pages:
     lead = doc.xpath("/html/body/div[9]/div[3]/div/header/p")[0].text
     articlebody = doc.xpath("/html/body/div[9]/div[3]/div/div[2]")[0]
     contentstext = ""
-    #print(title)
-    #print(subtitle)
-    #print(lead)
+    print(author)
+    print(articlemet)
+    print(title)
+    print(subtitle)
+    print(lead)
 
     print("interpreter")
     intr(articlebody)
