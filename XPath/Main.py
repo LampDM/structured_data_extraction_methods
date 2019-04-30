@@ -1,4 +1,4 @@
-from lxml import html,etree
+from lxml import html, etree
 import json
 import sys
 
@@ -41,61 +41,76 @@ def jewelry():
             except Exception as ex:
                 pass
 
-vra="Volvo XC 40-rendered-again.html"
-volvo ="Volvo XC 40 D4 AWD momentum_ suvereno med najboljše v razredu - RTVSLO.si.html"
-pages=["Audi A6-rendered-again.html",
+
+def cars():
+    volvo = "Volvo XC 40 D4 AWD momentum_ suvereno med najboljše v razredu - RTVSLO.si.html"
+    pages = ["Audi A6-rendered-again.html",
              volvo]
 
+    def intr(dom):
+        if isinstance(dom, html.HtmlElement):
+            ctag = dom.tag
+            if ctag == "p":
+                children = dom.getchildren()
+                intr(dom.text)
+                for c in children:
+                    intr(c)
+            elif ctag == "div":
+                for el in dom:
+                    intr(el)
+            elif ctag == "figure":
+                for el in dom:
+                    intr(el)
+            # elif ctag == "img":
+            #   intr(dom.attrib['src'])
+            elif ctag == "article":
+                for el in dom:
+                    intr(el)
+            # elif ctag == "a":
+            #    intr(dom.attrib['href'])
+            elif ctag == "strong":
+                intr(dom.text)
+            elif ctag == "br":
+                intr(dom.tail)
+            else:
+                pass
+        else:
+            if dom is not None:
+                if "./" in dom:
+                    pass
+                else:
+                    nonlocal content
+                    content += str(dom)
 
-def intr(dom):
- content = []
- if isinstance(dom,html.HtmlElement):
-     ctag = dom.tag
-     if ctag == "p":
-         intr(dom.text)
-     elif ctag == "div":
-         for el in dom:
-             intr(el)
-     elif ctag == "figure":
-         for el in dom:
-             intr(el)
-     elif ctag == "img":
-        intr(dom.attrib['src'])
-     elif ctag == "article":
-         for el in dom:
-             intr(el)
-     elif ctag == "a":
-         intr(dom.attrib['href'])
-     else:
-         pass
- else:
-     if dom is not None:
-         print(dom)
+    for page in pages:
+        doc = html.fromstring(open('../WebPages/rtvslo.si/{}'.format(page), encoding="ansi").read())
+        "/html/body/div[10]/div[3]/div/div[1]/div[1]/div"
+        author = doc.xpath("/html/body/div[9]/div[3]/div/div[1]/div[1]/div")[0].text
+        publishedt = doc.xpath("/html/body/div[9]/div[3]/div/div[1]/div[2]")[0].text
+        title = doc.xpath("/html/body/div[9]/div[3]/div/header/h1")[0].text
+        subtitle = doc.xpath("/html/body/div[9]/div[3]/div/header/div[2]")[0].text
+        lead = doc.xpath("/html/body/div[9]/div[3]/div/header/p")[0].text
+        articlebody = doc.xpath("/html/body/div[9]/div[3]/div/div[2]")[0]
+
+        content = ""
+        intr(articlebody)
+
+        # Elimination of unwanted characters
+        if "<!--" in content:
+            content = content.split("-->")[1]
+        publishedt = publishedt.replace("\n", "").replace("\t", "")
+
+        out_json = {
+            'Title': title,
+            'SubTitle': subtitle,
+            'Author': author,
+            'PublishedTime': publishedt,
+            'Lead': lead,
+            'Content': content
+        }
+
+        print(json.dumps(out_json, ensure_ascii=False, indent=4), file=sys.stdout)
 
 
-for page in pages:
-    doc = html.fromstring(open('../WebPages/rtvslo.si/{}'.format(page)).read())
-
-    articlemet = doc.xpath("/html/body/div[10]/div[3]/div/div[1]")
-    "/html/body/div[10]/div[3]/div/div[1]/div[1]/div"
-    author = doc.xpath("/html/body/div[9]/div[3]/div/div[1]/div[1]/div")[0].text
-    publishedt = doc.xpath("/html/body/div[9]/div[3]/div/div[1]/div[2]")[0].text
-    title = doc.xpath("/html/body/div[9]/div[3]/div/header/h1")[0].text
-    subtitle = doc.xpath("/html/body/div[9]/div[3]/div/header/div[2]")[0].text
-    lead = doc.xpath("/html/body/div[9]/div[3]/div/header/p")[0].text
-    articlebody = doc.xpath("/html/body/div[9]/div[3]/div/div[2]")[0]
-    contentstext = ""
-    print(author)
-    print(articlemet)
-    print(title)
-    print(subtitle)
-    print(lead)
-
-    print("interpreter")
-    intr(articlebody)
-
-    #print(contentstext)
-    #print(author)
-    #print(publishedt)
-
-
+jewelry()
+cars()
