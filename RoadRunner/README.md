@@ -6,5 +6,6 @@ Open terminal and navigate to directory containing `main.swift` (also make sure 
 Then run following commands:
 ```
 chmod +x compile.sh
+./compile.sh
 ./main ../Input/index.html
 ```
