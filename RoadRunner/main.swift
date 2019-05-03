@@ -8,5 +8,20 @@
 
 import Foundation
 
-print("Hello, World!")
+let argumentParser = ArgumentParser()
+argumentParser.parseArguments(CommandLine.arguments)
 
+guard let inputFile = argumentParser.string(for: "source_file") else {
+  LoggerFactory.logger.error(message: "Missing `source_file` argument!")
+  exit(100)
+}
+
+do {
+  let url = URL(string: inputFile)!
+  let reader = try FileReader(fileUrl: url)
+  let inputStream = FileInputStream(fileReader: reader)
+  let atheris = try Atheris(inputStream: inputStream)
+  try atheris.parseTree()
+} catch {
+  LoggerFactory.logger.error(message: "Failed with error: " + error.localizedDescription)
+}

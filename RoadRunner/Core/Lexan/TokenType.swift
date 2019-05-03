@@ -1,0 +1,22 @@
+//
+//  TokenType.swift
+//  Atheris
+//
+//  Created by Toni Kocjan on 21/09/2018.
+//
+
+import Foundation
+
+public enum TokenType: String {
+  case tagIdentifier
+  case closeTagIdentifier
+  case closeTag
+  case backslash
+  case singleQuote
+  case doubleQuote
+  case identifier
+  case stringLiteral
+  case integerLiteral
+  case floatingLiteral
+  case eof
+}
