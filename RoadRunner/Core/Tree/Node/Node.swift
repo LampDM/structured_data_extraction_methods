@@ -29,6 +29,5 @@ extension Tag {
 
 enum Tree {
   case root(children: [Tag])
-  case tag(Tag)
   case empty
 }

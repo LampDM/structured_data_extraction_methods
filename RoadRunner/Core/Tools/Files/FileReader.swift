@@ -71,7 +71,7 @@ public class FileReader: FileReaderProtocol {
 }
 
 public extension FileReader {
-  public enum Error: Swift.Error {
+  enum Error: Swift.Error {
     case fileEmpty
   }
 }

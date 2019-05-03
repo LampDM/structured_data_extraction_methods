@@ -24,8 +24,6 @@ class DumpTree {
     switch tree {
     case .root(let tags):
       tags.forEach(dumpTag)
-    case .tag(let tag):
-      dumpTag(tag)
     case .empty:
       break
     }
