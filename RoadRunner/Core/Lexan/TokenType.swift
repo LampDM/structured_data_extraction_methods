@@ -8,9 +8,11 @@
 import Foundation
 
 public enum TokenType: String {
-  case tagIdentifier
-  case closeTagIdentifier
-  case closeTag
+  case tagIdentifier // `<head`
+  case closeTagIdentifier // `</head`
+  case closeTag // `>`
+  case selfClosingTag // `/>`
+  
   case backslash
   case singleQuote
   case doubleQuote

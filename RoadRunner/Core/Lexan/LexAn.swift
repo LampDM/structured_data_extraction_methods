@@ -68,6 +68,14 @@ extension LexAn: Sequence {
         return Symbol(token: .closeTag, lexeme: ">", position: position(count: 1))
       }
       
+      if isSlash(character), let next = nextCharacter() {
+        if isGreaterThanSymbol(next) {
+          return Symbol(token: .selfClosingTag, lexeme: "/>", position: position(count: 2))
+        }
+        bufferCharacter = next
+        continue
+      }
+      
       if isDoubleQuote(character) {
         return parseStringConstant()
       }
@@ -110,6 +118,10 @@ private extension LexAn {
         break
       }
       if isSlash(char) {
+        if lexeme.count > 1 {
+          bufferCharacter = char
+          break
+        }
         tokenType = .closeTagIdentifier
       }
       
