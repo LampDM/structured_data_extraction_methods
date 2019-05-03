@@ -1,0 +1,376 @@
+#footpanel {
+	position: fixed;
+	bottom: 0; 
+	z-index: 997; /*--Keeps the panel on top of all other elements--*/
+	background: #e6e6e6;
+	border: 1px solid #c3c3c3;
+	border-bottom: none;
+	width: 90%; 
+	/*width:990px;*/
+	margin: 0 5%;
+	font-size:11px;
+}
+
+*html #footpanel { /*--IE6 Hack - Fixed Positioning to the Bottom--*/
+	margin-top: -1px; /*--prevents IE6 from having an infinity scroll bar - due to 1px border on #footpanel--*/
+	position: absolute;
+	top:expression(eval(document.compatMode &&document.compatMode=='CSS1Compat') ?documentElement.scrollTop+(documentElement.clientHeight-this.clientHeight) : document.body.scrollTop +(document.body.clientHeight-this.clientHeight));
+}
+
+#footpanel ul {
+	padding: 0; margin: 0;
+	float: left;
+	width: 100%; 
+	list-style: none;
+	border-top: 1px solid #fff; /*--Gives the bevel feel on the panel--*/
+	font-size: 1.0em;
+}
+#footpanel ul li{
+	padding: 0; margin: 0;
+	float: left;
+	position: relative;
+}
+#footpanel ul li a{
+	padding: 5px;
+	float: left;
+	text-indent: -9999px;
+	height: 16px; width: 16px;
+	text-decoration: none;
+	color: #333;
+	position: relative;
+}
+html #footpanel ul li a:hover{	background-color: #fff; }
+html #footpanel ul li a.active { /*--Active state when subpanel is open--*/
+	background-color: #fff;
+	height: 17px;
+	margin-top: -2px; /*--Push it up 2px to attach the active button to subpanel--*/
+	border: 1px solid #1B9DD8;
+	border-top: none;
+	z-index: 200; /*--Keeps the active area on top of the subpanel--*/
+	position: relative;
+}
+
+#footpanel a.home {	
+	background: url(markacija.png) no-repeat 15px center;
+	width: 50px;
+	padding-left: 35px;
+	border-right: 1px solid #bbb;
+	text-indent: 0; /*--Reset text indent--*/
+	font-weight:bold;
+}
+
+#footpanel a.mdo {	
+	background: url(ikone/group.png) no-repeat 15px center;
+	width: 100px;
+	text-align:center;
+	font-weight:bold;
+	padding-left: 10px;
+	border-right: 1px solid #bbb;
+	text-indent: 0; /*--Reset text indent--*/
+}
+
+#footpanel a.komisija {	
+	background: url(pz16x16.png) no-repeat 15px center;
+	width: 130px;
+	text-align:center;
+	font-weight:bold;
+	padding-left: 15px;
+	border-right: 1px solid #bbb;
+	text-indent: 0; /*--Reset text indent--*/
+}
+
+#footpanel a.postojanka {	
+	background: url(ikone/postojanka.png) no-repeat 15px center;
+	width: 130px;
+	text-align:center;
+	font-weight:bold;
+	padding-left: 10px;
+	border-right: 1px solid #bbb;
+	text-indent: 0; /*--Reset text indent--*/
+}
+
+a.profile		{	background: url(user_edit.png) no-repeat center center; border-right: 1px solid #bbb; }
+a.forum_add		{	background: url(comment_add.png) no-repeat center center; border-right: 1px solid #bbb; }
+a.avtorji		{	background: url(ikone/impressum.png) no-repeat center center; border-right: 1px solid #bbb; border-left: 1px solid #bbb;}
+
+a.flora			{	background: url(ikone/flora.png) no-repeat center center; border-right: 1px solid #bbb; width:40px;}
+a.gaea			{	background: url(ikone/gaea.png) no-repeat center center; border-right: 1px solid #bbb; width:40px;}
+a.vreme			{	background: url(ikone/weather_cloudy.png) no-repeat center center; border-right: 1px solid #bbb; width:40px;}
+a.sneg			{	background: url(ikone/weather_snow.png) no-repeat center center; border-right: 1px solid #bbb; width:40px;}
+
+a.ascent_add	{	background: url(add.png) no-repeat center center;}
+a.ascent_stat	{	background: url(chart_bar.png) no-repeat center center; border-right: 1px solid #bbb;}
+
+a.my_spascents	{	background: url(red_point.gif) no-repeat center center;}
+a.spascent_add	{	background: url(add.png) no-repeat center center;}
+a.spascent_stat	{	background: url(chart_bar.png) no-repeat center center; border-right: 1px solid #bbb;}
+
+a.contacts		{	background: url(address_book.png) no-repeat center center; }
+a.playlist		{	background: url(document_music_playlist.png) no-repeat center center; }
+a.videos		{	background: url(video.png) no-repeat center center;  border-right: 1px solid #bbb;}
+a.messages		{	background: url(mail.png) no-repeat center center; }
+a.editprofile	{	background: url(wrench_screwdriver.png) no-repeat center center; }
+
+
+#footpanel a.gallery { 	
+	background: url(gallery.png) no-repeat 15px center;
+	width: 126px;
+	border-left: 1px solid #bbb;
+	border-right: 0px solid #bbb;
+	padding-left: 40px;
+	text-indent: 0; 
+}
+
+#footpanel a.chat{	
+	background: url(vzponi.gif) no-repeat 15px center;
+	width: 126px;
+	border-left: 1px solid #bbb;
+	border-right: 1px solid #bbb;
+	padding-left: 40px;
+	text-indent: 0; /*--Reset text indent--*/
+}
+
+a.novice_ikona		{	background: url(admin/menu/news.gif) 	no-repeat center center;	 	border-left: 1px solid #bbb;}
+a.koledar_ikona		{	background: url(ikone/calendar.png) 	no-repeat center center;	 	border-left: 1px solid #bbb;}
+a.vzponi_ikona		{	background: url(vzponi.gif) 			no-repeat center center;	 	border-left: 1px solid #bbb;}
+a.galerije_ikona	{	background: url(ikone/calendar.png) 	no-repeat center center;	 	border-left: 1px solid #bbb;}
+a.video_ikona		{	background: url(video.png) 				no-repeat center center;	 	border-left: 1px solid #bbb;}
+a.comment_ikona		{	background: url(comments.png) 			no-repeat center center;	 	border-left: 1px solid #bbb;}
+a.forum_ikona		{	background: url(ikone/user_comment.png) 		no-repeat center center;	 	border-left: 1px solid #bbb;}
+a.komisije_ikona	{	background: url(pz16x16.png) 			no-repeat center center;	 	border-left: 1px solid #bbb;}
+a.shop_ikona		{	background: url(ikone/basket.png) 		no-repeat center center;	 	border-left: 1px solid #bbb;}
+
+#footpanel li#komisije_panel  {float: left; } 
+
+#footpanel li#shop_panel,
+#footpanel li#comment_panel, 
+#footpanel li#forum_panel, 
+#footpanel li#video_panel, 
+#footpanel li#galerija_panel, 
+#footpanel li#vzponi_panel, 
+#footpanel li#novice_panel {float: right; }  /*--Right align the chat and alert panels--*/
+
+#footpanel a small {  /*--panel tool tip styles--*/
+	text-align: center;
+	width: 130px;
+	height:54px;
+	background: url(footer_hint.gif) no-repeat center ;
+	padding: 20px 5px 5px 5px;
+	display: none; /*--Hide by default--*/
+	color: #fff;
+	font-size: 1em;
+	text-indent: 0;
+	font-weight:normal;
+}
+#footpanel a:hover small{
+	display: block; /*--Show on hover--*/
+	position: absolute;
+	top: -70px; /*--Position tooltip 35px above the list item--*/
+	/*left: 50%; */
+	margin-left: -58px; /*--Center the tooltip ORIGINAL = 48px --*/
+	z-index: 9999;
+	font-weight:normal;
+}
+
+#footpanel ul li div a { /*--Reset link style for subpanel links--*/
+	text-indent: 0;
+	width: auto;
+	height: auto;
+	padding: 5px;
+	float: none;
+	color: #00629a;
+	position: static;
+	display:block;
+}
+#footpanel ul li div a:hover {	text-decoration: none;  background-color:#e6e6e6; color:#FF0000;} /*--Reset link style for subpanel links--*/
+
+#footpanel .subpanel {
+	position: absolute;
+	left: 0; bottom: 27px;
+	display: none;	/*--Hide by default--*/
+	width: 198px;
+	border: 1px solid #1B9DD8;
+	background: #fff;
+	overflow: hidden;
+	padding-bottom: 2px;
+}
+#footpanel h3 {
+	background: #1B9DD8;
+	padding: 5px;
+	color: #fff;
+	font-size: 1.1em;
+	cursor: pointer;
+	margin-top:0px;
+}
+#footpanel h3 span { 
+	font-size: 1.5em;
+	float: right;
+	line-height: 0.6em;	
+	font-weight: normal;
+}
+#footpanel .subpanel ul{
+	padding: 0; margin: 0;
+	background: #fff;
+	width: 100%;
+	overflow: auto;
+}
+#footpanel .subpanel li{ 
+	float: none; /*--Reset float--*/
+	display: block;
+	padding: 0; margin: 0;
+	overflow: hidden;
+	clear: both;
+	background: #fff;
+	position: static;  /*--Reset relative positioning--*/
+	/*font-size: 0.9em;*/
+}
+
+/* NOVICE PANEL */
+#novice_panel .subpanel { right: 0; left: auto; width:400px; /*--Reset left positioning and make it right positioned--*/ }
+#novice_panel .subpanel li {
+	border-top: 1px solid #f0f0f0;
+	display: block;
+}
+#novice_panel .subpanel li p {padding: 5px 10px;}
+#novice_panel .subpanel li a.delete{
+	background: url(delete_x.gif) no-repeat;
+	float: right;
+	width: 13px; height: 14px;
+	margin: 5px;
+	text-indent: -9999px;
+	visibility: hidden; /*--Hides by default but still takes up space (not completely gone like display:none;)--*/
+}
+#novice_panel .subpanel li a.delete:hover { background-position: left bottom; }
+#footpanel #novice_panel li.view {
+	margin-right:0px; text-align: right; padding: 5px 0px 5px 0px;
+}
+/* NOVICE PANEL */
+
+/* GALERIJA PANEL */
+#galerija_panel .subpanel { right: 0; left: auto; width:400px; /*--Reset left positioning and make it right positioned--*/ }
+#galerija_panel .subpanel li {
+	border-top: 1px solid #f0f0f0;
+	display: block;
+}
+#galerija_panel .subpanel li p {padding: 5px 10px;}
+#galerija_panel .subpanel li a.delete{
+	background: url(delete_x.gif) no-repeat;
+	float: right;
+	width: 13px; height: 14px;
+	margin: 5px;
+	text-indent: -9999px;
+	visibility: hidden; /*--Hides by default but still takes up space (not completely gone like display:none;)--*/
+}
+#galerija_panel .subpanel li a.delete:hover { background-position: left bottom; }
+#footpanel #galerija_panel li.view {
+	margin-right:0px; text-align: left; padding: 5px 0px 5px 0px;
+}
+/* GALERIJA PANEL */
+
+/* VIDEO PANEL */
+#video_panel .subpanel { right: 0; left: auto; /*--Reset left positioning and make it right positioned--*/ }
+#video_panel .subpanel li {
+	border-top: 1px solid #f0f0f0;
+	display: block;
+}
+#video_panel .subpanel li p {padding: 5px 10px;}
+#video_panel .subpanel li a.delete{
+	background: url(delete_x.gif) no-repeat;
+	float: right;
+	width: 13px; height: 14px;
+	margin: 5px;
+	text-indent: -9999px;
+	visibility: hidden; /*--Hides by default but still takes up space (not completely gone like display:none;)--*/
+}
+#video_panel .subpanel li a.delete:hover { background-position: left bottom; }
+#footpanel #video_panel li.view {
+	margin-right:0px; text-align: right; padding: 5px 0px 5px 0px;
+}
+/* VIDEO PANEL */
+
+/* SHOP PANEL */
+#shop_panel .subpanel { right: 0; left: auto; width:400px; /*--Reset left positioning and make it right positioned--*/ }
+#shop_panel .subpanel li { border-top: 1px solid #f0f0f0; display: block; }
+#shop_panel .subpanel li p {padding: 5px 10px;}
+#shop_panel .subpanel li a.delete { background: url(delete_x.gif) no-repeat; float: right; width: 13px; height: 14px; margin: 5px; text-indent: -9999px; visibility: hidden; }
+#shop_panel .subpanel li a.delete:hover { background-position: left bottom; }
+#shop_panel #shop_panel li.view { margin-right:5px; text-align: right; padding: 5px 10px 5px 0;}
+/* SHOP PANEL */
+
+/* COMMENT PANEL */
+#comment_panel .subpanel { right: 0; left: auto; width:400px; /*--Reset left positioning and make it right positioned--*/ }
+#comment_panel .subpanel li {
+	border-top: 1px solid #f0f0f0;
+	display: block;
+}
+#comment_panel .subpanel li p {padding: 5px 10px;}
+#comment_panel .subpanel li a.delete{
+	background: url(delete_x.gif) no-repeat;
+	float: right;
+	width: 13px; height: 14px;
+	margin: 5px;
+	text-indent: -9999px;
+	visibility: hidden; /*--Hides by default but still takes up space (not completely gone like display:none;)--*/
+}
+#comment_panel .subpanel li a.delete:hover { background-position: left bottom; }
+#footpanel #comment_panel li.view {
+	margin-right:0px; text-align: right; padding: 5px 0px 5px 0px;
+}
+/* COMMENT PANEL */
+
+/* FORUM PANEL */
+#forum_panel .subpanel { right: 0; left: auto; width:400px; /*--Reset left positioning and make it right positioned--*/ }
+#forum_panel .subpanel li {
+	border-top: 1px solid #f0f0f0;
+	display: block;
+}
+#forum_panel .subpanel li p {padding: 5px 10px;}
+#forum_panel .subpanel li a.delete{
+	background: url(delete_x.gif) no-repeat;
+	float: right;
+	width: 13px; height: 14px;
+	margin: 5px;
+	text-indent: -9999px;
+	visibility: hidden; /*--Hides by default but still takes up space (not completely gone like display:none;)--*/
+}
+#forum_panel .subpanel li a.delete:hover { background-position: left bottom; }
+#footpanel #forum_panel li.view {
+	/*background:url(more.png) no-repeat center right;*/
+	margin-right:0px; text-align: right; padding: 5px 0px 5px 0px;
+}
+/* FORUM PANEL */
+
+/* SEARCH BOTTOM CSS */
+fieldset.search {
+	border: none;
+	width: 243px;
+	margin: 0 auto;
+	height:16px;
+}
+.search input, .search button {
+	border: none;
+	float: left;
+}
+.search input.box {
+	color: #333;
+	font-size: 10px;
+	width: 190px;
+	height: 18px;
+	padding-left:3px; padding-right:3px;
+	background: transparent url(btn_search.gif) no-repeat left top;
+	margin-right: 0px;
+}
+.search input.box:focus {
+	background: transparent url(btn_search.gif) no-repeat left -20px;
+	outline: none;
+}
+.search button.btn {
+	width: 38px;
+	height: 20px;
+	cursor: pointer;
+	text-indent: -9999px;
+	background: transparent url(btn_search.gif) no-repeat top right;	
+}
+.search button.btn:hover {
+	background: transparent url(btn_search.gif) no-repeat bottom right;	
+}

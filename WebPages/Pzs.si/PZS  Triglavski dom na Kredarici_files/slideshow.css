@@ -1,0 +1,24 @@
+#gallery { position:relative; height:165px; width:585px; }
+#gallery a { float:left; position:absolute; }
+#gallery a img { border:none; }
+#gallery a.show { z-index:1; }
+#gallery .caption {
+		z-index:2; 
+		background-color:#FFF; 
+		color:#000; 
+		height:30px; 
+		width:585px; 
+		position:absolute;
+		text-align:justify;
+		bottom:0px;
+		display:none;
+}
+
+#gallery .caption .content { padding:0px 15px 5px 5px; width:575px;font-size:24px; font-weight:bold; font-family:Trebuchet MS, Verdana, Arial, Helvetica, helv, sans-serif;font-size:24px; font-weight:bold; font-family:Trebuchet MS, Verdana, Arial, Helvetica, helv, sans-serif; text-align:right;}
+	
+#gallery .caption .content h3 { 
+		margin:0;
+		padding:0px 0px 15px 0px;
+		font-size:24px; font-weight:bold; font-family:Trebuchet MS, Verdana, Arial, Helvetica, helv, sans-serif; text-align:right;
+		color:#000;
+}

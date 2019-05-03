@@ -1,0 +1,8 @@
+.star-rating-wrap { margin:0px; padding:3px; overflow: hidden;}
+.star-rating-wrap a { text-decoration:none; }
+.star-rating { margin: 0px; height:16px; }
+.star-rating span { display:block; border:none; margin:none; padding:none; width:15px; height:15px; cursor:pointer; float:left; }
+.star-grey { background-image:url("../../ikone/markacija_gray_full.png"); }
+.star-red { background-image:url("../../ikone/markacija.png"); }
+#star-avg, #star-total { font-weight:bold; }
+#star-avg, #star-msg { color:#FF0000; }

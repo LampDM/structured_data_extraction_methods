@@ -84,7 +84,6 @@ def cars():
 
     for page in pages:
         doc = html.fromstring(open('../WebPages/rtvslo.si/{}'.format(page), encoding="ansi").read())
-        "/html/body/div[10]/div[3]/div/div[1]/div[1]/div"
         author = doc.xpath("/html/body/div[9]/div[3]/div/div[1]/div[1]/div")[0].text
         publishedt = doc.xpath("/html/body/div[9]/div[3]/div/div[1]/div[2]")[0].text
         title = doc.xpath("/html/body/div[9]/div[3]/div/header/h1")[0].text
@@ -112,5 +111,49 @@ def cars():
         print(json.dumps(out_json, ensure_ascii=False, indent=4), file=sys.stdout)
 
 
-jewelry()
-cars()
+def koce():
+    pages = ["PZS  Triglavski dom na Kredarici.html", "PZS  Vojkova koča na Nanosu.html"]
+
+    def intr(dom):
+        if isinstance(dom, html.HtmlElement):
+            ctag = dom.tag
+            if ctag == "td":
+                intr(dom.text)
+                for c in dom:
+                    intr(c)
+            elif ctag == "h5":
+                intr(dom.text)
+            elif ctag == "tr":
+                intr(dom.text)
+                for c in dom:
+                    intr(c)
+            elif ctag == "a":
+                intr(dom.text)
+            elif ctag == "br":
+                intr(dom.text)
+                intr(dom.tail)
+            elif ctag == "span":
+                intr(dom.tail)
+            else:
+                pass
+        else:
+            if dom is not None:
+                print(dom)
+
+    for page in pages:
+        doc = html.fromstring(open('../WebPages/Pzs.si/{}'.format(page), encoding="utf-8").read())
+        tbody = doc.xpath(
+            "/html/body/table[1]/tbody/tr[3]/td[2]/table[1]/tbody/tr/td/div[2]/table[1]/tbody/tr[1]/td[2]/table/tbody")[
+            0]
+        tbodycs = tbody.getchildren()
+        for i in range(len(tbodycs)+1):
+            child = doc.xpath(
+                "/html/body/table[1]/tbody/tr[3]/td[2]/table[1]/tbody/tr/td/div[2]/table[1]/tbody/tr[1]/td[2]/table/tbody/tr[{}]".format(
+                    i))
+            if len(child) > 0:
+                intr(child[0])
+
+
+# jewelry()
+# cars()
+koce()

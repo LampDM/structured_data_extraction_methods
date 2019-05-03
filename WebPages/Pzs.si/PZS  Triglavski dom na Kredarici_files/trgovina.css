@@ -1,0 +1,73 @@
+/* stili za vozièek */
+
+h2.trigger_none {
+	font-weight: normal; font-size:13px;
+	padding: 5px 0px 5px 0px;
+	margin: 0px 0px 0px 0px;
+	background: url(images/white.gif) no-repeat right center; /* pušèice */
+	width: 565px;
+	border:1px solid #B1B1B0;
+	float: left;
+}
+
+h2.trigger {
+	font-weight: normal; font-size:13px;
+	padding: 5px 0px 5px 0px;
+	margin: 0px 0px 0px 0px;
+	background: #E6E6E6 url(images/plus.png) no-repeat right center; /* pušèice */
+	width: 565px;
+	/* border:1px solid #B1B1B0; */
+	border:1px solid #0099CC;
+	-moz-border-radius: 5px; -webkit-border-radius:5px; border-radius:5px; margin-right:5px;
+	/*float: left;*/
+}
+h2.trigger a {
+	text-decoration: none; font-size:15px;
+	display: block;
+}
+h2.active_vozicek {background: #E6E6E6 url(images/minus.png) no-repeat right center;} 
+
+#toggle_container {
+	margin: 0px 0px 0px 0px;
+	padding-top:10px;
+	/*overflow: hidden;*/
+	width: 565px;
+	border-bottom:1px dashed #0099CC;
+	clear: both;
+}
+.toggle_container .block {
+	padding: 0px; /*--Padding of Container--*/
+	margin-right:0px;
+	border-bottom:1px dashed #dadada;
+	margin-bottom:20px;
+}
+/* stili za vozièek */
+
+
+.white_form { background-color:#FFF; outline:none;border:0px;padding:5px;font-family:Lucida Sans Unicode, Lucida Grande, Tahoma;font-size:12px; -moz-border-radius: 8px; -webkit-border-radius:8px; border-radius:8px;}
+
+/*
+.silver_form { width:300px; background-color:#e6e6e6; outline:none;border:0px;padding:5px;font-family:Lucida Sans Unicode, Lucida Grande, Tahoma;font-size:12px; -moz-border-radius: 8px; -webkit-border-radius:8px; border-radius:8px;border:1px solid #c8c8c8;}
+
+.silver_form_error { width:300px; background-color:#FFF; outline:none;border:0px;padding:5px;font-family:Lucida Sans Unicode, Lucida Grande, Tahoma;font-size:12px; -moz-border-radius: 8px; -webkit-border-radius:8px; border-radius:8px;border:1px solid #FF0000;}
+*/
+
+/* novo */
+.silver_form { width:300px; outline:none;padding:5px;border:1px solid #c8c8c8;}
+
+.silver_form_error { width:300px; outline:none;border:1px solid #e6e6e6;padding:5px;border:1px solid #ff0000;} 
+
+.silver_form_ro { width:300px; outline:none;padding:5px; border:0px solid #c8c8c8; color:#0099CC; font-weight:bold;}
+
+.kolicina_round {  padding:3px 3px 3px 10px; background:#FFFFFF; text-decoration:none; border:1px solid #cfd0d2; -moz-border-radius: 8px; -webkit-border-radius:8px; border-radius:8px; }
+
+.round_sporocilo {  padding: 10px; color:#8D8E91; background:#FFFFFF; text-decoration:none; border:1px solid #cfd0d2; -moz-border-radius: 8px; -webkit-border-radius:8px; border-radius:8px; }
+
+.pad5	{ color:#8D8E91; padding:5px 0px 5px 0px; }
+
+#box_clanarina { position:fixed; padding:7px 5px 5px 25px; top:0px; right:0px;  background:#FFFF99 url(ikone/basket.png) no-repeat 5px 5px; -moz-border-radius-bottomleft: 10px; 
+-webkit-border-bottom-left-radius:10px; 
+border-bottom-left-radius:10px;
+border-left:1px solid #B1B1B0;border-bottom:1px solid #B1B1B0;}
+
+#order_table td { padding:0px 5px 10px 0px; }

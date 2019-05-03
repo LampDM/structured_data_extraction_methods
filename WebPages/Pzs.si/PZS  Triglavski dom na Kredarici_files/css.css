@@ -1,0 +1,104 @@
+/* CSS Document */
+button {
+	-moz-background-clip:border;
+	-moz-background-inline-policy:continuous;
+	-moz-background-origin:padding;
+	-moz-border-radius-bottomleft:3px;
+	-moz-border-radius-bottomright:3px;
+	-moz-border-radius-topleft:3px;
+	-moz-border-radius-topright:3px;
+	background:#F6F6F6 none repeat scroll 0 0;
+	border:1px solid #CCCCCC;
+	cursor:pointer;
+	float:left; margin-left:10px;
+	height:2.0833em;
+	overflow:visible;
+	padding:0 0.5em;
+	vertical-align:middle;
+	white-space:nowrap;
+}
+#wrap_poll {
+	/*border:solid #e5eecc 1px; width:200px; background:#e5eecc;*/
+	-moz-border-radius: 6px; 
+	-webkit-border-radius: 6px;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+.tooltip{ height:13px;display: none;width:120px; text-align:left;overflow:visible;opacity:0.7;filter:alpha(opacity=40)}
+.tooltip2{ height:13px;display: none;width:140px; text-align:right; overflow:visible;opacity:0.7;filter:alpha(opacity=20)}
+.tooltip3{ height:13px;display: none;width:270px; text-align:right; overflow:visible;opacity:0.7;filter:alpha(opacity=40)}
+
+#poll_quiz{ font-family:Geneva, Arial, Helvetica, sans-serif; font-size:14px; color:#fff}
+#poll_quiz label{ width:150px; border:solid #669933 1px; padding:5px; background-color:#669933;}
+
+#options{ text-align:left; padding:6px;}
+
+.totalstats{
+		display: none;
+		font-size: 0.8em;
+		height:17px;
+		padding:7px;
+		-moz-border-radius: 6px; 
+		-webkit-border-radius: 6px;
+		-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+		-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+		text-align: left;
+		text-decoration: none;
+		width:60px;
+		background-color:#333333;
+		color:#FFFFFF;
+		text-shadow: #ffffff 0px 0px 20px;
+	}
+	
+.totalstatsbutton	{ width:100%; vertical-align:top;background:#ffffff none repeat scroll 0 0; }
+.totalstatsbutton .greenBar	{background-color:#AADA37;  margin-bottom:3px; height:6px;}		
+.totalstatsbutton .redbar	{background-color:#CF362F;  margin-bottom:3px; height:6px;}		
+.totalstatsbutton .bluebar	{background-color:#0099CC;  margin-bottom:3px; height:6px;}	
+.totalstatsbutton .bargraph	{background-color:#e0eef7;  margin-bottom:3px; height:10px; border-bottom:1px solid silver; border-right:1px solid silver;-moz-border-radius: 5px; -webkit-border-radius:5px; border-radius:5px;}	
+
+
+#poll_result{ text-align:none; padding-top:12px; vertical-align:bottom}
+#poll_result label{ float:left;font-family:Geneva, Arial, Helvetica, sans-serif; font-size:12px; width:49px;}
+/*#poll_result div { float:left; }*/
+#poll_result .greenBar2{background-color:#AADA37;  width:20px; margin-left:40px; height:6px;}	
+#poll_result .redbar2{background-color:#CF362F;  width:20px; margin-left:26px;height:6px;}		
+#poll_result .bluebar2{background-color:#0099CC;  width:20px; margin-left:26px;height:6px;}	
+
+#poll_result .bargraph	{background-color:#e0eef7;  margin-bottom:3px; height:10px; border-bottom:1px solid silver; border-right:1px solid silver;-moz-border-radius: 5px; -webkit-border-radius:5px; border-radius:5px;}	
+
+#voting_result{ border:solid #666666 1px; height:120px; margin-top:19px;
+	-moz-border-radius: 6px; -webkit-border-radius: 6px; 
+	width:500px; margin-left:12px; display:none
+}
+
+/* #Send { border:#CC0000 solid 1px;width:60px; background:#CC0000; color:#FFFFFF; cursor:pointer; padding:4px 12px 4px 12px; margin:10px 8px 6px 6px;} */
+#Send { cursor:pointer; }
+.search-background {
+		display: none;
+		font-size: 13px;
+		font-weight: bold;
+		height:100px;
+		position: absolute;
+		padding-top:80px;
+		-moz-border-radius: 6px; 
+		-webkit-border-radius: 6px;
+		-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+		-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+		text-align: center;
+		/*opacity:0.5;filter: alpha(opacity=50) ;*/
+		text-decoration: none;
+		width:100px;
+		margin-left:40px;
+	}
+	
+.search-background {
+	background:#FFFFFF;
+	color:#000000;
+	text-shadow: #000000 0px 0px 20px;
+}
+
+search-background label {	
+	border:solid #66FF00 1px;
+}	
+
+
