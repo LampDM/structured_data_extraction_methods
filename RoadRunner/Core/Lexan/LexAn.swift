@@ -1,8 +1,8 @@
 //
 //  LexAn.swift
-//  Atheris
+//  RoadRunner
 //
-//  Created by Toni Kocjan on 21/09/2018.
+//  Created by Toni Kocjan on 03/05/2019.
 //  Copyright © 2018 Toni Kocjan. All rights reserved.
 //
 
@@ -13,6 +13,9 @@ public class LexAn: LexicalAnalyzer {
   
   private var currentLocation = Location(row: 1, column: 1)
   private var bufferCharacter: Character?
+  private var streamBuffer: String?
+  private var parsingTagContent = false
+  private var potentiallyParsingTagContent = false
   
   public init(inputStream: InputStream) {
     self.inputStream = inputStream
@@ -60,11 +63,22 @@ extension LexAn {
       
       //////////////////////////////
       
+      if potentiallyParsingTagContent {
+        parsingTagContent = !isLowerThanSymbol(character)
+        potentiallyParsingTagContent = false
+      }
+      if parsingTagContent {
+        bufferCharacter = character
+        return parseTagContent()
+      }
+      
       if isLowerThanSymbol(character) {
         return parseTagOrComment(character)
       }
       
       if isGreaterThanSymbol(character) {
+        potentiallyParsingTagContent = true
+        parsingTagContent = false
         return Symbol(token: .closeTag, lexeme: ">", position: position(count: 1))
       }
       
@@ -103,6 +117,41 @@ extension LexAn {
 }
 
 private extension LexAn {
+  func parseTagContent() -> Symbol {
+    func didCloseTag(lexeme: String) -> String.Index? {
+      guard let index = lexeme.lastIndex(of: "<") else { return nil }
+      let nextIndex = lexeme.index(after: index)
+      if isSlash(lexeme[nextIndex]) {
+        return lexeme.index(before: index)
+      }
+      return nil
+    }
+    
+    var lexeme = ""
+    while let char = nextCharacter() {
+      lexeme += "\(char)"
+      if char == " " { continue }
+      if char == "\n" {
+        currentLocation = Location(row: currentLocation.row + 1, column: 1)
+        continue
+      }
+      if char == "\t" {
+        currentLocation = Location(row: currentLocation.row, column: currentLocation.column + 4)
+        continue
+      }
+      
+      if isGreaterThanSymbol(char), let tagStartIndex = didCloseTag(lexeme: lexeme) {
+        streamBuffer = String(lexeme[lexeme.index(after: tagStartIndex)...])
+        lexeme = String(lexeme[...tagStartIndex])
+        break
+      }
+    }
+    parsingTagContent = false
+    return Symbol(token: .identifier,
+                  lexeme: lexeme,
+                  position: position(count: lexeme.count))
+  }
+  
   func parseTagOrComment(_ character: Character) -> Symbol? {
     func parseComment() -> Symbol? {
       var buffer = ""
@@ -146,7 +195,7 @@ private extension LexAn {
   func parseIdentifier(_ character: Character) -> Symbol {
     var lexeme = "\(character)"
     while let char = nextCharacter() {
-      if isAlphabet(char) {
+      if isAlphabet(char) || isMinus(char) {
         lexeme += "\(char)"
         continue
       }
@@ -213,8 +262,8 @@ private extension LexAn {
     return char >= "a" && char <= "z" || char >= "A" && char <= "Z"
   }
   
-  func isUnderscore(_ char: Character) -> Bool {
-    return char == "_"
+  func isMinus(_ char: Character) -> Bool {
+    return char == "-"
   }
   
   func isSlash(_ char: Character) -> Bool {
@@ -235,6 +284,15 @@ private extension LexAn {
     if let char = bufferCharacter {
       self.bufferCharacter = nil
       return char
+    }
+    
+    if let buffer = streamBuffer, let nextChar = buffer.first {
+      if buffer.count == 1 {
+        streamBuffer = nil
+      } else {
+        streamBuffer = String(streamBuffer![buffer.index(after: buffer.startIndex)...])
+      }
+      return nextChar
     }
     
     do {

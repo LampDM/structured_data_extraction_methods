@@ -84,8 +84,9 @@ private extension TreeParser {
     while symbol.token == .identifier {
       let name = symbol.lexeme
       nextSymbol()
-      guard expecting(.assign) else {
-        fatalError("Expecting assign")
+      if !expecting(.assign) {
+        attributes.append(.init(name: name, value: ""))
+        continue
       }
       nextSymbol()
       guard expecting(.stringLiteral) else {

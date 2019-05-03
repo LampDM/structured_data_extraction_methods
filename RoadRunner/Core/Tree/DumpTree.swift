@@ -64,7 +64,6 @@ private extension DumpTree {
     return (0..<indent).reduce("", { acc, _ in acc + " " }) + string
   }
   
-  
   func increaseIndent() {
     indent += indentation
   }
