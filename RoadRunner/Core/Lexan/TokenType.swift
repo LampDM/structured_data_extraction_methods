@@ -14,11 +14,11 @@ public enum TokenType: String {
   case selfClosingTag // `/>`
   
   case backslash
-  case singleQuote
-  case doubleQuote
   case identifier
   case stringLiteral
   case integerLiteral
   case floatingLiteral
+  
+  case assign
   case eof
 }

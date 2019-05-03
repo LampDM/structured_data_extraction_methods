@@ -76,6 +76,14 @@ extension LexAn: Sequence {
         continue
       }
       
+      if isAlphabet(character) {
+        return parseIdentifier(character)
+      }
+      
+      if isAssign(character) {
+        return Symbol(token: .assign, lexeme: "=", position: position(count: 1))
+      }
+      
       if isDoubleQuote(character) {
         return parseStringConstant()
       }
@@ -85,8 +93,6 @@ extension LexAn: Sequence {
       if isNumeric(character) {
         return parseNumericConstant()
       }
-//
-//      return parseIdentifierOrReservedKeyword()
     }
     return nil
   }
@@ -135,6 +141,19 @@ private extension LexAn {
     return Symbol(token: tokenType,
                   lexeme: lexeme,
                   position: position(count: lexeme.count))
+  }
+  
+  func parseIdentifier(_ character: Character) -> Symbol {
+    var lexeme = "\(character)"
+    while let char = nextCharacter() {
+      if isAlphabet(char) {
+        lexeme += "\(char)"
+        continue
+      }
+      bufferCharacter = char
+      break
+    }
+    return Symbol(token: .identifier, lexeme: lexeme, position: position(count: lexeme.count))
   }
   
   func parseStringConstant() -> Symbol? {
@@ -200,6 +219,10 @@ private extension LexAn {
   
   func isSlash(_ char: Character) -> Bool {
     return char == "/"
+  }
+  
+  func isAssign(_ char: Character) -> Bool {
+    return char == "="
   }
   
   func isWhitespace(_ char: Character) -> Bool {
