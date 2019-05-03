@@ -43,20 +43,38 @@ private extension TreeParser {
       let endPosition = symbol.position
       nextSymbol()
       let tag = Tag(name: tagName,
-                 attributes: attributes,
-                 children: [],
-                 position: startPosition + endPosition)
+                    attributes: attributes,
+                    content: .empty,
+                    position: startPosition + endPosition)
       return tag
     }
     if symbol.token != .closeTag {
       fatalError("Expecting close tag")
     }
-    let endPosition = symbol.position
     nextSymbol()
+    if expecting(.identifier) {
+      let text = symbol.lexeme
+      nextSymbol()
+      guard expecting(.closeTagIdentifier) else {
+        fatalError("Expecting close tag identifier")
+      }
+      nextSymbol()
+      guard expecting(.closeTag) else {
+        fatalError("Expecting close tag")
+      }
+      let endPosition = symbol.position
+      nextSymbol()
+      let tag = Tag(name: tagName,
+                    attributes: attributes,
+                    content: .text(text),
+                    position: startPosition + endPosition)
+      return tag
+    }
+    let endPosition = symbol.position
     let children = parseChildren()
     let tag = Tag(name: tagName,
                   attributes: attributes,
-                  children: children,
+                  content: .container(children: children),
                   position: startPosition + (children.last?.position ?? endPosition))
     return tag
   }

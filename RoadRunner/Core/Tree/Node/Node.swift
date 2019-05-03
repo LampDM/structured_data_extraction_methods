@@ -11,7 +11,7 @@ import Foundation
 struct Tag {
   let name: String
   let attributes: [Attribute]
-  let children: [Tag]
+  let content: Content
   let position: Position
 }
 
@@ -19,6 +19,12 @@ extension Tag {
   struct Attribute {
     let name: String
     let value: String
+  }
+  
+  enum Content {
+    case text(String)
+    case container(children: [Tag])
+    case empty
   }
 }
 
