@@ -7,6 +7,6 @@
 
 import Foundation
 
-public protocol LexicalAnalyzer {
+public protocol LexicalAnalyzer: Sequence {
   func nextSymbol() -> Symbol
 }

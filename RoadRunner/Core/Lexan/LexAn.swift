@@ -29,7 +29,7 @@ public class LexAn: LexicalAnalyzer {
   }
 }
 
-extension LexAn: Sequence {
+extension LexAn {
   public struct Iterator: IteratorProtocol {
     public let lexan: LexAn
     private var didEnd = false

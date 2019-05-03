@@ -21,6 +21,10 @@
 		3734755B227C6CA4001024A1 /* LexicalAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3734754E227C6CA4001024A1 /* LexicalAnalyzer.swift */; };
 		3734755C227C6CA4001024A1 /* TokenType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3734754F227C6CA4001024A1 /* TokenType.swift */; };
 		3734755D227C6CA4001024A1 /* Symbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37347550227C6CA4001024A1 /* Symbol.swift */; };
+		37347560227C7D5F001024A1 /* TreeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3734755F227C7D5F001024A1 /* TreeParser.swift */; };
+		37347563227C7DA0001024A1 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37347562227C7DA0001024A1 /* Node.swift */; };
+		37347565227C8275001024A1 /* DumpTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37347564227C8275001024A1 /* DumpTree.swift */; };
+		37347567227C8394001024A1 /* StandardOutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37347566227C8394001024A1 /* StandardOutputStream.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +55,10 @@
 		3734754E227C6CA4001024A1 /* LexicalAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LexicalAnalyzer.swift; sourceTree = "<group>"; };
 		3734754F227C6CA4001024A1 /* TokenType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenType.swift; sourceTree = "<group>"; };
 		37347550227C6CA4001024A1 /* Symbol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Symbol.swift; sourceTree = "<group>"; };
+		3734755F227C7D5F001024A1 /* TreeParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeParser.swift; sourceTree = "<group>"; };
+		37347562227C7DA0001024A1 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		37347564227C8275001024A1 /* DumpTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DumpTree.swift; sourceTree = "<group>"; };
+		37347566227C8394001024A1 /* StandardOutputStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardOutputStream.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +102,7 @@
 			children = (
 				37347540227C6CA4001024A1 /* Compiler */,
 				3734754C227C6CA4001024A1 /* Lexan */,
+				3734755E227C7D4B001024A1 /* Tree */,
 				37347544227C6CA4001024A1 /* Tools */,
 			);
 			path = Core;
@@ -126,6 +135,7 @@
 				37347549227C6CA4001024A1 /* OutputStream.swift */,
 				3734754A227C6CA4001024A1 /* FileInputStream.swift */,
 				3734754B227C6CA4001024A1 /* FileReader.swift */,
+				37347566227C8394001024A1 /* StandardOutputStream.swift */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -139,6 +149,24 @@
 				37347550227C6CA4001024A1 /* Symbol.swift */,
 			);
 			path = Lexan;
+			sourceTree = "<group>";
+		};
+		3734755E227C7D4B001024A1 /* Tree */ = {
+			isa = PBXGroup;
+			children = (
+				37347561227C7D97001024A1 /* Node */,
+				3734755F227C7D5F001024A1 /* TreeParser.swift */,
+				37347564227C8275001024A1 /* DumpTree.swift */,
+			);
+			path = Tree;
+			sourceTree = "<group>";
+		};
+		37347561227C7D97001024A1 /* Node */ = {
+			isa = PBXGroup;
+			children = (
+				37347562227C7DA0001024A1 /* Node.swift */,
+			);
+			path = Node;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,12 +230,16 @@
 				37347539227C6BDD001024A1 /* main.swift in Sources */,
 				37347557227C6CA4001024A1 /* OutputStream.swift in Sources */,
 				37347556227C6CA4001024A1 /* InputStream.swift in Sources */,
+				37347565227C8275001024A1 /* DumpTree.swift in Sources */,
 				3734755B227C6CA4001024A1 /* LexicalAnalyzer.swift in Sources */,
 				37347558227C6CA4001024A1 /* FileInputStream.swift in Sources */,
+				37347567227C8394001024A1 /* StandardOutputStream.swift in Sources */,
 				3734755C227C6CA4001024A1 /* TokenType.swift in Sources */,
 				37347555227C6CA4001024A1 /* FileOutputStream.swift in Sources */,
 				37347559227C6CA4001024A1 /* FileReader.swift in Sources */,
+				37347560227C7D5F001024A1 /* TreeParser.swift in Sources */,
 				37347554227C6CA4001024A1 /* FileWriter.swift in Sources */,
+				37347563227C7DA0001024A1 /* Node.swift in Sources */,
 				3734755A227C6CA4001024A1 /* LexAn.swift in Sources */,
 				3734755D227C6CA4001024A1 /* Symbol.swift in Sources */,
 				37347551227C6CA4001024A1 /* Logger.swift in Sources */,

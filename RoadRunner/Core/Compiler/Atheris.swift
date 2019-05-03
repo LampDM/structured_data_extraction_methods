@@ -21,13 +21,16 @@ public class Atheris {
       logger.log(message: "RoadRunner [0.0.1 (pre-alpha)]:")
       
       let lexan = LexAn(inputStream: inputStream)
-      let outputStream = FileOutputStream(fileWriter: try FileWriter(fileUrl: URL(string: "lex")!))
-      for symbol in lexan {
-        print(symbol.description)
-      }
+//      for symbol in lexan {
+//        print(symbol.description)
+//      }
       
       // Parse syntax
-//      let synan = SynAn(lexan: lexan)
+      let parser = TreeParser(lexan: lexan)
+      let tree = parser.parseTree()
+      
+      let dumpTree = DumpTree(tree: tree, outputStream: StandardOutputStream())
+      dumpTree.dump()
 //      let ast = try synan.parse()
 //      syntaxTree = ast
       
