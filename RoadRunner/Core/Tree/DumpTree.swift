@@ -36,12 +36,13 @@ private extension DumpTree {
   func dumpTag(_ tag: Tag) {
     print(tag.name, tag.position)
     for attribute in tag.attributes {
-      print("a: " + attribute.name + ": " + attribute.value)
+      print("- a: " + attribute.name + ": " + attribute.value)
     }
     switch tag.content {
-    case .text(let text):
-      print("v: " + text)
-    case .container(let children):
+    case .container(let text, let children):
+      if let text = text {
+        print("- v: " + text)
+      }
       increaseIndent()
       children.forEach(dumpTag)
       decreaseIndent()

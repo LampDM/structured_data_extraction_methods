@@ -52,30 +52,36 @@ private extension TreeParser {
       fatalError("Expecting close tag")
     }
     nextSymbol()
+    var text: String?
     if expecting(.identifier) {
-      let text = symbol.lexeme
+      text = symbol.lexeme
       nextSymbol()
-      guard expecting(.closeTagIdentifier) else {
-        fatalError("Expecting close tag identifier")
-      }
+    }
+    let children = parseChildren()
+    if expecting(.identifier) {
+      text = (text ?? "") + symbol.lexeme
       nextSymbol()
-      guard expecting(.closeTag) else {
-        fatalError("Expecting close tag")
-      }
-      let endPosition = symbol.position
-      nextSymbol()
+    }
+    if expecting(.eof) {
       let tag = Tag(name: tagName,
                     attributes: attributes,
-                    content: .text(text),
-                    position: startPosition + endPosition)
+                    content: .container(text: text, children: children),
+                    position: startPosition + symbol.position)
       return tag
     }
+    guard expecting(.closeTagIdentifier) else {
+      fatalError("Expecting close tag identifier")
+    }
+    nextSymbol()
     let endPosition = symbol.position
-    let children = parseChildren()
+    guard expecting(.closeTag) else {
+      fatalError("Expecting close tag")
+    }
+    nextSymbol()
     let tag = Tag(name: tagName,
                   attributes: attributes,
-                  content: .container(children: children),
-                  position: startPosition + (children.last?.position ?? endPosition))
+                  content: .container(text: text, children: children),
+                  position: startPosition + endPosition)
     return tag
   }
   
@@ -101,16 +107,11 @@ private extension TreeParser {
   
   func parseChildren() -> [Tag] {
     var children = [Tag]()
-    while symbol.token != .closeTagIdentifier {
+    while !(symbol.token == .closeTagIdentifier || symbol.token == .identifier) {
       let childNode = parseTag()
       children.append(childNode)
       if expecting(.eof) { return children }
     }
-    nextSymbol()
-    guard expecting(.closeTag) else {
-      fatalError("Expecting close tag")
-    }
-    nextSymbol()
     return children
   }
 }

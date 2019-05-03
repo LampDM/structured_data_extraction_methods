@@ -63,7 +63,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "source_file=/Users/tonikocjan/Faks/masters/Ekstrakcija/2.nal/RoadRunner/Input/index.html"
+            argument = "source_file=/Users/tonikocjan/Faks/masters/Ekstrakcija/2.nal/RoadRunner/Input/w3schools.html"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

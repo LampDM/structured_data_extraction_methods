@@ -28,11 +28,8 @@ public class Atheris {
       // Parse syntax
       let parser = TreeParser(lexan: lexan)
       let tree = parser.parseTree()
-      
       let dumpTree = DumpTree(tree: tree, outputStream: StandardOutputStream())
       dumpTree.dump()
-//      let ast = try synan.parse()
-//      syntaxTree = ast
       
       // Dump ast
 //      try dumpAst(ast)

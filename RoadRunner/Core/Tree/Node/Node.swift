@@ -22,8 +22,7 @@ extension Tag {
   }
   
   enum Content {
-    case text(String)
-    case container(children: [Tag])
+    case container(text: String?, children: [Tag])
     case empty
   }
 }
