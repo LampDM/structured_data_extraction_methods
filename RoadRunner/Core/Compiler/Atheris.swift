@@ -28,9 +28,11 @@ public class Atheris {
     let tree = parser.parseTree()
     print(tree)
     
-    let neki = tree.element(by: "neki")
+    let neki = tree.elementById("neki")
     print(neki!)
     
+    let joze = tree.elementByClass("joze")
+    print(joze!)
   }
 }
 

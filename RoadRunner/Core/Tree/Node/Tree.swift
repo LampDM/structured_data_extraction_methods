@@ -14,15 +14,29 @@ enum Tree {
 }
 
 extension Tree {
-  func element(by id: String) -> Tree? {
+  func elementById(_ id: String) -> Tree? {
+    return element(by: "id", with: id)
+  }
+  
+  func elementByClass(_ classValue: String) -> Tree? {
+    return element(by: "class", with: classValue)
+  }
+  
+  func element(by attribute: String, with value: String) -> Tree? {
+    return first { $0.attribute(by: attribute, with: value) != nil }
+  }
+}
+
+extension Tree {
+  func first(where condition: @escaping (Tag) -> Bool) -> Tree? {
     switch self {
     case .root(let tag, let children):
-      if let _ = tag.attribute(by: "id", with: id) {
+      if condition(tag) {
         return self
       }
       for child in children {
-        if let subtree = child.element(by: id) {
-          return subtree
+        if let tree = child.first(where: condition) {
+          return tree
         }
       }
     case .empty:
