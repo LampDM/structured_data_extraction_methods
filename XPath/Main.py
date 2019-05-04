@@ -5,6 +5,7 @@ from pprint import pprint
 
 def jewelry():
     for page in ["jewelry01.html", "jewelry02.html"]:
+        print("new page")
         doc = html.fromstring(open('../WebPages/overstock.com/{}'.format(page)).read())
         count = doc.xpath("/html/body/table[2]/tbody/tr[1]/td[5]/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/*")
 
@@ -142,6 +143,7 @@ def koce():
                 content.append(dom)
 
     for page in pages:
+        print("new page")
         ck = None
         da = dict()
         doc = html.fromstring(open('../WebPages/Pzs.si/{}'.format(page), encoding="utf-8").read())
@@ -180,6 +182,6 @@ def koce():
         #print(json.dumps(da, ensure_ascii=False, indent=4), file=sys.stdout)
 
 
-# jewelry()
+jewelry()
 # cars()
-koce()
+#koce()
