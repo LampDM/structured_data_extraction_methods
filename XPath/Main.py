@@ -1,7 +1,7 @@
 from lxml import html, etree
 import json
 import sys
-
+from pprint import pprint
 
 def jewelry():
     for page in ["jewelry01.html", "jewelry02.html"]:
@@ -115,6 +115,7 @@ def koce():
     pages = ["PZS  Triglavski dom na Kredarici.html", "PZS  Vojkova koča na Nanosu.html"]
 
     def intr(dom):
+        nonlocal content
         if isinstance(dom, html.HtmlElement):
             ctag = dom.tag
             if ctag == "td":
@@ -128,7 +129,7 @@ def koce():
                 for c in dom:
                     intr(c)
             elif ctag == "a":
-                intr(dom.text)
+                intr(dom.attrib['href'])
             elif ctag == "br":
                 intr(dom.text)
                 intr(dom.tail)
@@ -138,20 +139,45 @@ def koce():
                 pass
         else:
             if dom is not None:
-                print(dom)
+                content.append(dom)
 
     for page in pages:
+        ck = None
+        da = dict()
         doc = html.fromstring(open('../WebPages/Pzs.si/{}'.format(page), encoding="utf-8").read())
         tbody = doc.xpath(
             "/html/body/table[1]/tbody/tr[3]/td[2]/table[1]/tbody/tr/td/div[2]/table[1]/tbody/tr[1]/td[2]/table/tbody")[
             0]
         tbodycs = tbody.getchildren()
-        for i in range(len(tbodycs)+1):
+        for i in range(len(tbodycs) + 1):
+            content = []
             child = doc.xpath(
                 "/html/body/table[1]/tbody/tr[3]/td[2]/table[1]/tbody/tr/td/div[2]/table[1]/tbody/tr[1]/td[2]/table/tbody/tr[{}]".format(
                     i))
             if len(child) > 0:
                 intr(child[0])
+                if len(content) == 1:
+                    ck = content.pop()
+                    da[ck] = []
+                else:
+                    if len(content) == 2:
+                        da[ck].append({content[0]: content[1]})
+                    else:
+                        da[ck].append({content[0]: content[1:]})
+
+        # Fix zem sirina in dolzina
+        zms = da["Lokacija"][1]
+        zs = {list(zms.keys())[0] : zms[list(zms.keys())[0]][1]}
+        zd = {zms[list(zms.keys())[0]][0] : zms[list(zms.keys())[0]][2]}
+        del(da["Lokacija"][1])
+        da["Lokacija"].append(zs)
+        da["Lokacija"].append(zd)
+
+        #Fix za naslov
+        da["Lokacija"][0]={"Naslov" : "".join(da["Lokacija"][0]["Naslov"])}
+
+        pprint(da)
+        #print(json.dumps(da, ensure_ascii=False, indent=4), file=sys.stdout)
 
 
 # jewelry()
