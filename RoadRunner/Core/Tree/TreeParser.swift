@@ -27,10 +27,11 @@ class TreeParser<Lexan: LexicalAnalyzer> {
 private extension TreeParser {
   func parse() -> Tree {
     let nodes = parseChildren()
-    return .root(children: nodes)
+    return .root(tag: Tag(name: "", attributes: [], content: nil, position: .zero),
+                 children: nodes)
   }
   
-  func parseTag() -> Tag {
+  func parseTag() -> Tree {
     guard expecting(.tagIdentifier) else {
       print(symbol.token, symbol.position)
       fatalError("Expecting tag identifier")
@@ -44,9 +45,9 @@ private extension TreeParser {
       nextSymbol()
       let tag = Tag(name: tagName,
                     attributes: attributes,
-                    content: .empty,
+                    content: nil,
                     position: startPosition + endPosition)
-      return tag
+      return .root(tag: tag, children: [])
     }
     if symbol.token != .closeTag {
       fatalError("Expecting close tag")
@@ -65,20 +66,20 @@ private extension TreeParser {
     if expecting(.eof) {
       let tag = Tag(name: tagName,
                     attributes: attributes,
-                    content: .container(text: text, children: children),
+                    content: text,
                     position: startPosition + symbol.position)
-      return tag
+      return .root(tag: tag, children: children)
     }
     guard expecting(.closeTagIdentifier) else {
       fatalError("Expecting close tag identifier")
     }
     let closingIdentifier = symbol.lexeme[symbol.lexeme.index(symbol.lexeme.startIndex, offsetBy: 2)...]
     if closingIdentifier != tagName {
-      if (tagName == "p") {
+//      if (tagName == "p") {
         lexan.injectSymbol(buffer: ">\(symbol.lexeme)>")
-      } else {
-        fatalError("Expecting close tag identifier for \(tagName), found \(closingIdentifier) instead")
-      }
+//      } else {
+//        fatalError("Expecting close tag identifier for \(tagName), found \(closingIdentifier) instead")
+//      }
     }
     nextSymbol()
     let endPosition = symbol.position
@@ -88,9 +89,9 @@ private extension TreeParser {
     nextSymbol()
     let tag = Tag(name: tagName,
                   attributes: attributes,
-                  content: .container(text: text, children: children),
+                  content: text,
                   position: startPosition + endPosition)
-    return tag
+    return .root(tag: tag, children: children)
   }
   
   func parseAttributes() -> [Tag.Attribute] {
@@ -113,8 +114,8 @@ private extension TreeParser {
     return attributes
   }
   
-  func parseChildren() -> [Tag] {
-    var children = [Tag]()
+  func parseChildren() -> [Tree] {
+    var children = [Tree]()
     while !(symbol.token == .closeTagIdentifier || symbol.token == .identifier) {
       let childNode = parseTag()
       children.append(childNode)

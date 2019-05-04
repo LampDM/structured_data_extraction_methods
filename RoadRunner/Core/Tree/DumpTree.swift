@@ -21,31 +21,30 @@ class DumpTree {
   }
   
   func dump() {
-    switch tree {
-    case .root(let tags):
-      tags.forEach(dumpTag)
-    case .empty:
-      break
-    }
+    dumpTree(tree)
   }
 }
 
 private extension DumpTree {
+  func dumpTree(_ tree: Tree) {
+    switch tree {
+    case .root(let tag, let children):
+      dumpTag(tag)
+      increaseIndent()
+      children.forEach(dumpTree)
+      decreaseIndent()
+    case .empty:
+      break
+    }
+  }
+  
   func dumpTag(_ tag: Tag) {
     print(tag.name, tag.position)
     for attribute in tag.attributes {
       print("- a: " + attribute.name + ": " + attribute.value)
     }
-    switch tag.content {
-    case .container(let text, let children):
-      if let text = text {
-        print("- v: " + text)
-      }
-      increaseIndent()
-      children.forEach(dumpTag)
-      decreaseIndent()
-    case .empty:
-      break
+    if let text = tag.content {
+      print("- v: " + text)
     }
   }
 }

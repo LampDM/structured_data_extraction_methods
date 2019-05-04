@@ -11,7 +11,7 @@ import Foundation
 struct Tag {
   let name: String
   let attributes: [Attribute]
-  let content: Content
+  let content: String?
   let position: Position
 }
 
@@ -20,14 +20,10 @@ extension Tag {
     let name: String
     let value: String
   }
-  
-  enum Content {
-    case container(text: String?, children: [Tag])
-    case empty
-  }
 }
 
-enum Tree {
-  case root(children: [Tag])
-  case empty
+extension Tag {
+  func attribute(by name: String) -> String? {
+    return attributes.last { $0.name == name }?.value
+  }
 }

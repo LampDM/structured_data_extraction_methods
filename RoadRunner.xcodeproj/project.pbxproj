@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		372326F5227DAD4C0008BACC /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372326F4227DAD4C0008BACC /* Tree.swift */; };
 		37347539227C6BDD001024A1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37347538227C6BDD001024A1 /* main.swift */; };
 		37347551227C6CA4001024A1 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37347541227C6CA4001024A1 /* Logger.swift */; };
 		37347552227C6CA4001024A1 /* Atheris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37347542227C6CA4001024A1 /* Atheris.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		372326F3227CC0770008BACC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		372326F4227DAD4C0008BACC /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		37347535227C6BDD001024A1 /* RoadRunner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RoadRunner; sourceTree = BUILT_PRODUCTS_DIR; };
 		37347538227C6BDD001024A1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		37347541227C6CA4001024A1 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				37347562227C7DA0001024A1 /* Node.swift */,
+				372326F4227DAD4C0008BACC /* Tree.swift */,
 			);
 			path = Node;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				37347567227C8394001024A1 /* StandardOutputStream.swift in Sources */,
 				3734755C227C6CA4001024A1 /* TokenType.swift in Sources */,
 				37347555227C6CA4001024A1 /* FileOutputStream.swift in Sources */,
+				372326F5227DAD4C0008BACC /* Tree.swift in Sources */,
 				37347559227C6CA4001024A1 /* FileReader.swift in Sources */,
 				37347560227C7D5F001024A1 /* TreeParser.swift in Sources */,
 				37347554227C6CA4001024A1 /* FileWriter.swift in Sources */,

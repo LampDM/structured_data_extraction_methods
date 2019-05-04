@@ -17,33 +17,29 @@ public class Atheris {
   }
   
   public func parseTree() throws {
-    do {
-      logger.log(message: "RoadRunner [0.0.1 (pre-alpha)]:")
-      
-      let lexan = LexAn(inputStream: inputStream)
-//      for symbol in lexan {
-//        print(symbol.description)
-//      }
-      
-      // Parse syntax
-      let parser = TreeParser(lexan: lexan)
-      let tree = parser.parseTree()
-      let dumpTree = DumpTree(tree: tree, outputStream: StandardOutputStream())
-      dumpTree.dump()
-      
-      // Dump ast
-//      try dumpAst(ast)
-      
-    } catch {
-      throw error
-    }
+    logger.log(message: "RoadRunner [0.0.1 (pre-alpha)]:")
+    
+    let lexan = LexAn(inputStream: inputStream)
+    //      for symbol in lexan {
+    //        print(symbol.description)
+    //      }
+    
+    // Parse syntax
+    let parser = TreeParser(lexan: lexan)
+    let tree = parser.parseTree()
+    let dumpTree = DumpTree(tree: tree, outputStream: StandardOutputStream())
+    dumpTree.dump()
+    
+    // Dump ast
+    //      try dumpAst(ast)
+    
   }
   
   private func dumpAst(outputFile: String = "ast") throws {
     let outputStream = FileOutputStream(fileWriter: try FileWriter(fileUrl: URL(string: outputFile)!))
-//    let dumpVisitor = DumpVisitor(outputStream: outputStream,
-//                                  symbolDescription: symbolDescription)
-//    try dumpVisitor.visit(node: ast)
+    //    let dumpVisitor = DumpVisitor(outputStream: outputStream,
+    //                                  symbolDescription: symbolDescription)
+    //    try dumpVisitor.visit(node: ast)
   }
 }
 
