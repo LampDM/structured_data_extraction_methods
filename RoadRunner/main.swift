@@ -8,20 +8,39 @@
 
 import Foundation
 
-let argumentParser = ArgumentParser()
-argumentParser.parseArguments(CommandLine.arguments)
-
-guard let inputFile = argumentParser.string(for: "source_file") else {
-  LoggerFactory.logger.error(message: "Missing `source_file` argument!")
-  exit(100)
+func logError(_ message: String) {
+  print("⚠️ " + message)
 }
 
-do {
-  let url = URL(string: inputFile)!
+func parseFile(_ file: String) throws -> Tree {
+  let url = URL(string: file)!
   let reader = try FileReader(fileUrl: url)
   let inputStream = FileInputStream(fileReader: reader)
   let atheris = try Atheris(inputStream: inputStream)
-  try atheris.parseTree()
+  return try atheris.parseTree()
+}
+
+let argumentParser = ArgumentParser()
+argumentParser.parseArguments(CommandLine.arguments)
+
+guard let baseFile = argumentParser.string(for: "base_file") else {
+  logError("Missing `base_file` argument!")
+  exit(100)
+}
+
+guard let referenceFile = argumentParser.string(for: "reference_file") else {
+  logError("Missing `reference_file` argument!")
+  exit(101)
+}
+
+do {
+  let baseTree = try parseFile(baseFile)
+  let referenceTree = try parseFile(referenceFile)
+  
+  let algorithm = RoadRunnerLikeAlgorithm(baseTree: baseTree.elementById("neki")!,
+                                          referenceTree: referenceTree.elementById("neki")!)
+  let wrapper = algorithm.buildWrapper()
+  print(wrapper)
 } catch {
-  LoggerFactory.logger.error(message: "Failed with error: " + error.localizedDescription)
+  logError("Failed with error: " + error.localizedDescription)
 }

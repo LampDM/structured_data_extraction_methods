@@ -10,7 +10,6 @@ import Foundation
 
 class TreeParser<Lexan: LexicalAnalyzer> {
   let lexan: Lexan
-  let logger: LoggerProtocol = LoggerFactory.logger
   private var symbol: Symbol
   
   init(lexan: Lexan) {
@@ -27,7 +26,7 @@ class TreeParser<Lexan: LexicalAnalyzer> {
 private extension TreeParser {
   func parse() -> Tree {
     let nodes = parseChildren()
-    return .root(tag: Tag(name: "", attributes: [], content: nil, position: .zero),
+    return .node(tag: Tag(name: "", attributes: [], content: nil, position: .zero),
                  children: nodes)
   }
   
@@ -47,7 +46,7 @@ private extension TreeParser {
                     attributes: attributes,
                     content: nil,
                     position: startPosition + endPosition)
-      return .root(tag: tag, children: [])
+      return .node(tag: tag, children: [])
     }
     if symbol.token != .closeTag {
       fatalError("Expecting close tag")
@@ -68,7 +67,7 @@ private extension TreeParser {
                     attributes: attributes,
                     content: text,
                     position: startPosition + symbol.position)
-      return .root(tag: tag, children: children)
+      return .node(tag: tag, children: children)
     }
     guard expecting(.closeTagIdentifier) else {
       fatalError("Expecting close tag identifier")
@@ -91,7 +90,7 @@ private extension TreeParser {
                   attributes: attributes,
                   content: text,
                   position: startPosition + endPosition)
-    return .root(tag: tag, children: children)
+    return .node(tag: tag, children: children)
   }
   
   func parseAttributes() -> [Tag.Attribute] {

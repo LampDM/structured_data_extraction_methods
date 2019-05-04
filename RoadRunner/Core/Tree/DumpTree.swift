@@ -28,7 +28,7 @@ class DumpTree {
 private extension DumpTree {
   func dumpTree(_ tree: Tree) {
     switch tree {
-    case .root(let tag, let children):
+    case .node(let tag, let children):
       dumpTag(tag)
       increaseIndent()
       children.forEach(dumpTree)

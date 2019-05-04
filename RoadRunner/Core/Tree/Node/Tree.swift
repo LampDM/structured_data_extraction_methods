@@ -8,12 +8,12 @@
 
 import Foundation
 
-enum Tree {
-  case root(tag: Tag, children: [Tree])
+public enum Tree {
+  case node(tag: Tag, children: [Tree])
   case empty
 }
 
-extension Tree {
+public extension Tree {
   func elementById(_ id: String) -> Tree? {
     return element(by: "id", with: id)
   }
@@ -27,10 +27,10 @@ extension Tree {
   }
 }
 
-extension Tree {
+public extension Tree {
   func first(where condition: @escaping (Tag) -> Bool) -> Tree? {
     switch self {
-    case .root(let tag, let children):
+    case .node(let tag, let children):
       if condition(tag) {
         return self
       }
@@ -47,7 +47,7 @@ extension Tree {
 }
 
 extension Tree: CustomStringConvertible {
-  var description: String {
+  public var description: String {
     let outputStream = StringOutputStream()
     let dump = DumpTree(tree: self, outputStream: outputStream)
     dump.dump()
