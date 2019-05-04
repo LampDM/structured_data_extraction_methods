@@ -132,7 +132,7 @@ private extension TreeParser {
     return symbol
   }
   
-  func expecting(_ type: TokenType) -> Bool {
+  func expecting(_ type: Token) -> Bool {
     return symbol.token == type
   }
   

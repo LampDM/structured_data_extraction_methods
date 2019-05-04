@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		372326F5227DAD4C0008BACC /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372326F4227DAD4C0008BACC /* Tree.swift */; };
+		372326F7227DB27F0008BACC /* StringOutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372326F6227DB27F0008BACC /* StringOutputStream.swift */; };
 		37347539227C6BDD001024A1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37347538227C6BDD001024A1 /* main.swift */; };
 		37347551227C6CA4001024A1 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37347541227C6CA4001024A1 /* Logger.swift */; };
 		37347552227C6CA4001024A1 /* Atheris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37347542227C6CA4001024A1 /* Atheris.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		372326F3227CC0770008BACC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		372326F4227DAD4C0008BACC /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
+		372326F6227DB27F0008BACC /* StringOutputStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringOutputStream.swift; sourceTree = "<group>"; };
 		37347535227C6BDD001024A1 /* RoadRunner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RoadRunner; sourceTree = BUILT_PRODUCTS_DIR; };
 		37347538227C6BDD001024A1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		37347541227C6CA4001024A1 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				3734754A227C6CA4001024A1 /* FileInputStream.swift */,
 				3734754B227C6CA4001024A1 /* FileReader.swift */,
 				37347566227C8394001024A1 /* StandardOutputStream.swift */,
+				372326F6227DB27F0008BACC /* StringOutputStream.swift */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				37347552227C6CA4001024A1 /* Atheris.swift in Sources */,
 				37347539227C6BDD001024A1 /* main.swift in Sources */,
 				37347557227C6CA4001024A1 /* OutputStream.swift in Sources */,
+				372326F7227DB27F0008BACC /* StringOutputStream.swift in Sources */,
 				37347556227C6CA4001024A1 /* InputStream.swift in Sources */,
 				37347565227C8275001024A1 /* DumpTree.swift in Sources */,
 				3734755B227C6CA4001024A1 /* LexicalAnalyzer.swift in Sources */,

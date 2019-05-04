@@ -23,7 +23,7 @@ extension Tag {
 }
 
 extension Tag {
-  func attribute(by name: String) -> String? {
-    return attributes.last { $0.name == name }?.value
+  func attribute(by name: String, with value: String) -> String? {
+    return attributes.last { $0.name == name && $0.value == value }?.value
   }
 }

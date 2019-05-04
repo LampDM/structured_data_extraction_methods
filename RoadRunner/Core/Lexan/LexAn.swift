@@ -174,7 +174,7 @@ private extension LexAn {
     }
     
     var lexeme = "\(character)"
-    var tokenType = TokenType.tagIdentifier
+    var tokenType = Token.tagIdentifier
     
     while let char = nextCharacter() {
       if isWhitespace(char) || isGreaterThanSymbol(char) {
@@ -229,7 +229,7 @@ private extension LexAn {
   
   func parseNumericConstant() -> Symbol {
     var lexeme = ""
-    var tokenType = TokenType.integerLiteral
+    var tokenType = Token.integerLiteral
     while let character = nextCharacter() {
       if isNumeric(character) {
         lexeme.append(character)

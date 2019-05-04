@@ -1,13 +1,13 @@
 //
-//  TokenType.swift
-//  Atheris
+//  Token.swift
+//  RoadRunner
 //
 //  Created by Toni Kocjan on 21/09/2018.
 //
 
 import Foundation
 
-public enum TokenType: String {
+public enum Token: String {
   case tagIdentifier // `<head`
   case closeTagIdentifier // `</head`
   case closeTag // `>`

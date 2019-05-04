@@ -8,7 +8,7 @@
 import Foundation
 
 public struct Symbol {
-  public let token: TokenType
+  public let token: Token
   public let lexeme: String
   public let position: Position
 }

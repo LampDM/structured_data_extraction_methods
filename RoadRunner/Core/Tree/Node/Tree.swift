@@ -17,7 +17,7 @@ extension Tree {
   func element(by id: String) -> Tree? {
     switch self {
     case .root(let tag, let children):
-      if let _ = tag.attribute(by: id) {
+      if let _ = tag.attribute(by: "id", with: id) {
         return self
       }
       for child in children {
@@ -32,5 +32,11 @@ extension Tree {
   }
 }
 
-private extension Tree {
+extension Tree: CustomStringConvertible {
+  var description: String {
+    let outputStream = StringOutputStream()
+    let dump = DumpTree(tree: self, outputStream: outputStream)
+    dump.dump()
+    return outputStream.buffer
+  }
 }
