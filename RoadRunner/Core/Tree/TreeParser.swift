@@ -72,6 +72,14 @@ private extension TreeParser {
     guard expecting(.closeTagIdentifier) else {
       fatalError("Expecting close tag identifier")
     }
+    let closingIdentifier = symbol.lexeme[symbol.lexeme.index(symbol.lexeme.startIndex, offsetBy: 2)...]
+    if closingIdentifier != tagName {
+      if (tagName == "p") {
+        lexan.injectSymbol(buffer: ">\(symbol.lexeme)>")
+      } else {
+        fatalError("Expecting close tag identifier for \(tagName), found \(closingIdentifier) instead")
+      }
+    }
     nextSymbol()
     let endPosition = symbol.position
     guard expecting(.closeTag) else {

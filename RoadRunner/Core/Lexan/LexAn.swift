@@ -30,6 +30,15 @@ public class LexAn: LexicalAnalyzer {
     }
     return symbol
   }
+  
+  public func injectSymbol(buffer: String) {
+    bufferCharacter = nil
+    if streamBuffer == nil {
+      streamBuffer = buffer
+    } else {
+      streamBuffer! += buffer
+    }
+  }
 }
 
 extension LexAn {

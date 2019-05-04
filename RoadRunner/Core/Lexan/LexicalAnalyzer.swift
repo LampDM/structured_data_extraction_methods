@@ -9,4 +9,5 @@ import Foundation
 
 public protocol LexicalAnalyzer: Sequence {
   func nextSymbol() -> Symbol
+  func injectSymbol(buffer: String)
 }
