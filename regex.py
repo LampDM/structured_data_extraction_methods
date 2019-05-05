@@ -30,18 +30,32 @@ overstock_listing_pattern = r'<td valign=\"top\">[\s]+?<a [^<>]+><b>(?P<Title>.*
                             r'[\s\S]+?<span class=\"normal\">(?P<Content>[^<>]+)'
 
 
+pzs_info_pattern = r'<td valign=\"top\"><table width=\"100%\"[\s\S]+?<td [\s\S]+?>(?P<Telefon>\+.+?)</td>' +\
+                   r'[\s\S]+?<td [\s\S]+?>(?P<GSM>\+.+?)</td>' +\
+                   r'[\s\S]+?<td [\s\S]+?>(?P<TelefonPD>\+.+?)</td>' + \
+                   r'[\s\S]+?<a [\s\S]+?>(?P<eMail>.+?)</a>' +\
+                   r'[\s\S]+?<a href=\"(?P<Splet>.+?)\"[\s\S]+?>[\s\S]+?</a>' +\
+                   r'[\s\S]+?<td [\s\S]+?\"padding-left:20px;\">(?P<Oskrbnik>.+?)</td></tr>' +\
+                   r'[\s\S]+?</a></span>(?P<Naslov>.+?)</td>' +\
+                   r'[\s\S]+?(?P<ZemljepisnaSirina>\d{2},[\d]+?)<br>(?P<ZemljepisnaDolzina>\d{2},[\d]+?)</td>' +\
+                   r'[\s\S]+?\">[^<>]+(?P<Lezisca>.+ - .+?)</td>' +\
+                   r'[\s\S]+?(?P<Jedilnica>[\d]+?\s\w+)</td>[\s\S]+?<a href=\"(?P<Cenik>.+?)\"[\s\S]+?>[\s\S]+?</a>'
+
+
 def to_json(payload: dict):
     print(json.dumps(payload, ensure_ascii=False, indent=4), file=sys.stdout)
 
 
+def remove_tags(pattern: str):
+    """ Replace html tags in pattern using re.
+    """
+    return re.sub('<[^<>]+>', '', pattern)
+
+
 def parse_rtv_content(file_path: str):
-    def _remove_tags(pattern: str):
-        """ Replace html tags in pattern using re.
-        """
-        return re.sub('<[^<>]+>', '', pattern)
 
     def _clean_data(match_result: dict):
-        match_result['Content'] = _remove_tags(match_result['Content'].replace('\t', '').replace('\n', '').strip())
+        match_result['Content'] = remove_tags(match_result['Content'].replace('\t', '').replace('\n', '').strip())
         return match_result
 
     with open(file_path, 'r', encoding="utf-8") as fp:
@@ -65,6 +79,19 @@ def parse_overstock_content(file_path: str):
         return to_json(payload)
 
 
+def parse_pzs_content(file_path: str):
+    def _clean_data(match_result: dict):
+        _lezisca = match_result['Lezisca'].replace('<br>', ', ')
+        match_result['Lezisca'] = remove_tags(_lezisca.replace('\t', '').replace('\n', '').strip())
+        match_result['Naslov'] = match_result['Naslov'].replace('<br>', ', ')
+        return match_result
+
+    with open(file_path, 'r', encoding="utf-8") as fp:
+        html_content = fp.read()
+        match = re.search(pzs_info_pattern, html_content)
+        return to_json(_clean_data(match.groupdict()))
+
+
 if __name__ == "__main__":
     rtv_pages = ['WebPages/rtvslo.si/Audi A6 50 TDI quattro_ nemir v premijskem razredu - RTVSLO.si.html',
                  'WebPages/rtvslo.si/Volvo XC 40 D4 AWD momentum_ suvereno med najboljše v razredu - RTVSLO.si.html']
@@ -72,8 +99,14 @@ if __name__ == "__main__":
     overstock_pages = ['WebPages/overstock.com/jewelry01.html',
                        'WebPages/overstock.com/jewelry02.html']
 
+    pzs_pages = ['WebPages/Pzs.si/PZS  Triglavski dom na Kredarici.html',
+                 'WebPages/Pzs.si/PZS  Vojkova koča na Nanosu.html']
+
     for page in rtv_pages:
         parse_rtv_content(page)
 
     for page in overstock_pages:
         parse_overstock_content(page)
+
+    for page in pzs_pages:
+        parse_pzs_content(page)
