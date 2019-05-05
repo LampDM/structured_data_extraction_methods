@@ -49,6 +49,7 @@ private extension TreeParser {
       return .node(tag: tag, children: [])
     }
     if symbol.token != .closeTag {
+      print(symbol)
       fatalError("Expecting close tag")
     }
     nextSymbol()
@@ -57,7 +58,7 @@ private extension TreeParser {
       text = symbol.lexeme
       nextSymbol()
     }
-    let children = parseChildren()
+    var children = parseChildren()
     if expecting(.identifier) {
       text = (text ?? "") + symbol.lexeme
       nextSymbol()
@@ -69,7 +70,17 @@ private extension TreeParser {
                     position: startPosition + symbol.position)
       return .node(tag: tag, children: children)
     }
+    
+    while expecting(.tagIdentifier) {
+      children.append(parseTag())
+      if expecting(.identifier) {
+        text = (text ?? "") + symbol.lexeme
+        nextSymbol()
+      }
+    }
+    
     guard expecting(.closeTagIdentifier) else {
+      print(symbol)
       fatalError("Expecting close tag identifier")
     }
     let closingIdentifier = symbol.lexeme[symbol.lexeme.index(symbol.lexeme.startIndex, offsetBy: 2)...]
@@ -115,7 +126,7 @@ private extension TreeParser {
   
   func parseChildren() -> [Tree] {
     var children = [Tree]()
-    while !(symbol.token == .closeTagIdentifier || symbol.token == .identifier) {
+    while !(symbol.token == .closeTagIdentifier || symbol.token == .identifier || symbol.token == .eof) {
       let childNode = parseTag()
       children.append(childNode)
       if expecting(.eof) { return children }

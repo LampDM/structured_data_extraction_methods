@@ -111,11 +111,7 @@ extension LexAn {
         return parseStringConstant()
       }
       
-      bufferCharacter = character
-      
-      if isNumeric(character) {
-        return parseNumericConstant()
-      }
+      bufferCharacter = "x"
     }
     return nil
   }
@@ -129,7 +125,24 @@ private extension LexAn {
   func parseTagContent() -> Symbol {
     func didCloseTag(lexeme: String) -> String.Index? {
       guard let index = lexeme.lastIndex(of: "<") else { return nil }
-      if let _ = lexeme[index...].first(where: { !(isAlphabet($0) || isSlash($0) || isLowerThanSymbol($0) || isGreaterThanSymbol($0)) }) { return nil }
+      if isSlash(lexeme[lexeme.index(after: index)]) {
+        return lexeme.index(before: index)
+      }
+      var string = false
+      for (index, char) in lexeme[index...].enumerated().dropFirst().dropLast() {
+        if index == 1 && !isAlphabet(char) { return nil }
+        if isDoubleQuote(char) || char == "'" {
+          if string {
+            string = false
+            continue
+          }
+          string = true
+        }
+        if string { continue }
+        guard isAlphabet(char) || isAssign(char) || isWhitespace(char) || char == ":" else {
+          return nil
+        }
+      }
       return lexeme.index(before: index)
     }
     
@@ -162,8 +175,33 @@ private extension LexAn {
     func parseComment() -> Symbol? {
       var buffer = ""
       while let char = nextCharacter() {
+        if char == "\n" {
+          currentLocation = Location(row: currentLocation.row + 1, column: 1)
+        }
+        if char == "\t" {
+          currentLocation = Location(row: currentLocation.row, column: currentLocation.column + 4)
+        }
+        
         buffer += "\(char)"
         if buffer.count >= 3 && buffer[buffer.index(buffer.endIndex, offsetBy: -3)...] == "-->" {
+          return parseSymbol()
+        }
+      }
+      return nil
+    }
+    
+    func ignoreScriptTag() -> Symbol? {
+      var buffer = ""
+      while let char = nextCharacter() {
+        if char == "\n" {
+          currentLocation = Location(row: currentLocation.row + 1, column: 1)
+        }
+        if char == "\t" {
+          currentLocation = Location(row: currentLocation.row, column: currentLocation.column + 4)
+        }
+        
+        buffer += "\(char)"
+        if buffer.count >= 8 && buffer[buffer.index(buffer.endIndex, offsetBy: -8)...] == "/script>" {
           return parseSymbol()
         }
       }
@@ -191,6 +229,9 @@ private extension LexAn {
       if lexeme.count == 4 && lexeme == "<!--" {
         return parseComment()
       }
+      if lexeme.count == 7 && lexeme == "<script" {
+        return ignoreScriptTag()
+      }
     }
     
     return Symbol(token: tokenType,
@@ -201,7 +242,7 @@ private extension LexAn {
   func parseIdentifier(_ character: Character) -> Symbol {
     var lexeme = "\(character)"
     while let char = nextCharacter() {
-      if isAlphabet(char) || isMinus(char) {
+      if isAlphabet(char) || isMinus(char) || char == ":" {
         lexeme += "\(char)"
         continue
       }
@@ -265,7 +306,7 @@ private extension LexAn {
   }
   
   func isAlphabet(_ char: Character) -> Bool {
-    return char >= "a" && char <= "z" || char >= "A" && char <= "Z"
+    return char >= "a" && char <= "z" || char >= "A" && char <= "Z" || char == "š" || char == "Š" || char == "ž" || char == "Ž" || char == "č" || char == "Č"
   }
   
   func isMinus(_ char: Character) -> Bool {
