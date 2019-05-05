@@ -63,7 +63,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "base_file=/Users/tonikocjan/Faks/masters/Ekstrakcija/2.nal/RoadRunner/Input/index.html"
+            argument = "base_file=/Users/tonikocjan/Faks/masters/Ekstrakcija/2.nal/RoadRunner/WebPages/rtvslo.si/Audi1.html"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

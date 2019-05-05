@@ -129,11 +129,8 @@ private extension LexAn {
   func parseTagContent() -> Symbol {
     func didCloseTag(lexeme: String) -> String.Index? {
       guard let index = lexeme.lastIndex(of: "<") else { return nil }
-      let nextIndex = lexeme.index(after: index)
-      if isSlash(lexeme[nextIndex]) {
-        return lexeme.index(before: index)
-      }
-      return nil
+      if let _ = lexeme[index...].first(where: { !(isAlphabet($0) || isSlash($0) || isLowerThanSymbol($0) || isGreaterThanSymbol($0)) }) { return nil }
+      return lexeme.index(before: index)
     }
     
     var lexeme = ""
