@@ -10,9 +10,16 @@
 \usepackage{ucs}
 \usepackage[utf8x]{inputenc}
 
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	filecolor=magenta,      
+	urlcolor=cyan,
+}
+
 \usepackage[slovene]{babel}
 \selectlanguage{slovene}
-
 
 \lstset{
     breaklines=true,
@@ -21,12 +28,8 @@
     extendedchars=false,
 }
 
-
 \renewcommand{\baselinestretch}{1.2} % za boljšo berljivost večji razmak
 \renewcommand{\appendixpagename}{\normalfont\Large\bfseries{Appendix}}
-
-
-
 
 \begin{document}
 
@@ -40,7 +43,6 @@
   \and
   Toni Kocjan
 }
-
 
 \institute{Fakulteta za Računalništvo in Informatiko UL
 \email{dm9929@student.uni-lj.si, jk0902@student.uni-lj.si, tk3152@student.uni-lj.si}\\
@@ -78,48 +80,50 @@ We only define one regular expression per page type. We extract all of the data 
 
 \section{XPath implementation}
 
-\subsection{Jewelry}
-An initial Xpath expression is called on the input html which selects a \textit{tbody} element. The children of this element represent our jewelry and other items on the page. We count the number of children and with a for loop and extra Xpath expression access each data item that interests us for each child. Any children that are malformed or do not contain the items we're interested in (such as price etc.) encounter an exception as the Xpath expression throws an error and is automatically not processed. Afterwards some minor post-processing of the acquired strings is done and the json is created.
+\subsection{jewelry}
+An initial Xpath expression is called on the input html which selects a \textit{tbody} element. The children of this element represent our jewelry and other items on the page. We count the number of children and with a for loop and extra Xpath expression access each data item that interests us for each child. Any children that are malformed or do not contain the items we're interested in (such as price etc.) encounter an exception as the Xpath expression throws an error and are automatically not processed. Afterwards some minor post-processing of the acquired strings is done and the json is created.
+\subsubsection{Output}
+\subsubsection{Output}
 
-\subsection{Cars}
+\subsection{cars}
 The items Title, SubTitle, Author, PublishedTime and Lead are all collected via seperate XPath expressions on the input html as both pages have the same structure when it comes to them. The main difference between the two pages is the structure of the article body from which we've derived our Content item. We handle this by first extracting an article body tag which contains all the contents we need. Afterwards we give the extracted element as an argument to our function \textit{intr} which recursively iterates through the tag structure and appends all encountered text into a \textit{nonlocal} string. The string is then briefly processed and added to our json output.
-
-\subsection{Koce}
-The two chosen pages are quite similar with the subtle difference of TODO
+\subsubsection{output1}
+\subsubsection{output2}
+\subsection{koce}
+\subsubsection{output1}
+\subsubsection{output2}
 
 \section{RoadRunner like implementation}
-\begin{lstlisting}
-import numpy as np
- 
-def incmatrix(genl1,genl2):
-    m = len(genl1)
-    n = len(genl2)
-    M = None #to become the incidence matrix
-    VT = np.zeros((n*m,1), int)  #dummy variable
- 
-    #compute the bitwise xor matrix
-    M1 = bitxormatrix(genl1)
-    M2 = np.triu(bitxormatrix(genl2),1) 
- 
-    for i in range(m-1):
-        for j in range(i+1, m):
-            [r,c] = np.where(M2 == M1[i,j])
-            for k in range(len(r)):
-                VT[(i)*n + r[k]] = 1;
-                VT[(i)*n + c[k]] = 1;
-                VT[(j)*n + r[k]] = 1;
-                VT[(j)*n + c[k]] = 1;
- 
-                if M is None:
-                    M = np.copy(VT)
-                else:
-                    M = np.concatenate((M, VT), 1)
- 
-                VT = np.zeros((n*m,1), int)
- 
-    return M
-\end{lstlisting}
 
+RoadRunner algorithm is based on a technique called \textit{tree matching}, which automatically generates a common wrapper by exploiting similarities and differences among pages of same class. In principal it works as follow:
+at every step, matching is performed on two objects: an input page and a reference page. [1]
 
+\subsection{Implementation details}
+
+We separate our algorithm into two stages:
+\begin{itemize}
+	\item tree parsing
+	\item automatic wrapper generation
+\end{itemize}
+
+\subsubsection{Tree parsing}
+
+The result of this stage is a tree-like representation of the HTML document. Each node in the tree contains information about a specific tag in the document, for instance tag's name, it's content, attributes and also it's children nodes. 
+
+Parsing is divided into two sub-stages called \textit{Lexer} and \textit{Parser}:
+
+Lexer produces a stream of tokens where each token represents and groups a meaningful subsequnce of characters from the source document (open tag, close tag, identifier, string literal, ...). 
+
+Parser consumes stream provided by the lexer and builds the tree. Building process itself is quite straightforward since html does not contain many syntax rules. Altough the main problem of course is that HTML is not strict and that the documents being parsed can contain \textit{incorrect} sequence of tokens and still be successfuly rendered by the browser. For that purpose \textit{Parser} contains a simple error-recovery mechanism.
+
+\subsubsection{Wrapper generation}
+
+Wrapper is also a tree-like structure in which each node represents a result of a matching between a node from input page and a node from reference page. 
+
+The algorithm \textit{preorderly} traverses both trees and compares current root nodes. If the nodes match in both tag name and content, they are marked as \textit{matching}. If instead they only match in tag name we also consider them matching, but they are marked as \textit{name-matching}. If they don't match at all we mark them as \textit{non-matching}.
+
+We then recursively compare their children. A problem arises when nodes don't have the same number of children. There are several ways we can solve this problem: a simple solution is to just \textit{zip} both lists together and perform matching. A better solution might be to perform matching multiple times, each time moving the aligment of the smaller list by one, and select a matching with the least miss-matches.
+
+\href{https://www.researchgate.net/publication/221213613_RoadRunner_Automatic_data_extraction_from_data-intensive_Web_sites}{[1] Automatic data extraction}
 
 \end{document}
