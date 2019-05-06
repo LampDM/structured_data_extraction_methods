@@ -44,12 +44,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		372326F3227CC0770008BACC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		372326F4227DAD4C0008BACC /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		372326F6227DB27F0008BACC /* StringOutputStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringOutputStream.swift; sourceTree = "<group>"; };
 		372326FA227DB5D50008BACC /* Algorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithm.swift; sourceTree = "<group>"; };
 		372326FC227DB5E50008BACC /* RoadRunnerLikeAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadRunnerLikeAlgorithm.swift; sourceTree = "<group>"; };
 		372326FE227DBE810008BACC /* DumpWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DumpWrapper.swift; sourceTree = "<group>"; };
+		3723275A228064880008BACC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = RoadRunner/README.md; sourceTree = "<group>"; };
 		37347535227C6BDD001024A1 /* RoadRunner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RoadRunner; sourceTree = BUILT_PRODUCTS_DIR; };
 		37347538227C6BDD001024A1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		37347542227C6CA4001024A1 /* Atheris.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Atheris.swift; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 		3734752C227C6BDD001024A1 = {
 			isa = PBXGroup;
 			children = (
-				372326F3227CC0770008BACC /* README.md */,
+				3723275A228064880008BACC /* README.md */,
 				37347537227C6BDD001024A1 /* RoadRunner */,
 				37347536227C6BDD001024A1 /* Products */,
 			);
