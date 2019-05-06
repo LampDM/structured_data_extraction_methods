@@ -8,6 +8,19 @@
 
 import Foundation
 
+private let limit = 100
+
+private extension Optional where Wrapped == String {
+  var isNilOrEmpty: Bool {
+    switch self {
+    case .some(let string):
+      return string.isEmpty
+    case .none:
+      return true
+    }
+  }
+}
+
 class DumpWrapper {
   typealias Tree = RoadRunnerLikeAlgorithm.Wrapper
   let tree: Tree
@@ -44,18 +57,18 @@ private extension DumpWrapper {
     case let .compare(matching, base, reference):
       print(matching.rawValue)
       increaseIndent()
-      print("b: " + base.name + ", " + (base.content?.limit(10) ?? ""))
-      print("r: " + reference.name + ", " + (reference.content?.limit(10) ?? ""))
+      print("b \(base.position): " + base.name + (base.content.isNilOrEmpty ? "" : ", content: " + (base.content?.limit(limit) ?? "")))
+      print("r \(reference.position): " + reference.name + (reference.content.isNilOrEmpty ? "" : ", content: " + (reference.content?.limit(limit) ?? "")))
       decreaseIndent()
     case let .referenceMissing(base):
       print("Reference missing")
       increaseIndent()
-      print("b: " + base.name + ", " + (base.content?.limit(10) ?? ""))
+      print("b \(base.position): " + base.name + ", content: " + (base.content?.limit(limit) ?? ""))
       decreaseIndent()
     case let .baseMissing(reference):
       print("Base missing")
       increaseIndent()
-      print("b: " + reference.name + ", " + (reference.content?.limit(10) ?? ""))
+      print("r [\(reference.position): " + reference.name + ", content: " + (reference.content?.limit(limit) ?? ""))
       decreaseIndent()
     }
   }
@@ -80,7 +93,8 @@ private extension DumpWrapper {
 }
 
 extension String {
-  func limit(_ int: Int) -> String.SubSequence {
-    return self[self.startIndex..<self.index(self.startIndex, offsetBy: min(self.count, int))]
+  func limit(_ int: Int) -> String {
+    if int == 0 { return self }
+    return String(self[self.startIndex..<self.index(self.startIndex, offsetBy: min(self.count, int))])
   }
 }

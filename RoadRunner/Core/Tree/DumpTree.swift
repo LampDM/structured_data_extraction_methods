@@ -38,7 +38,7 @@ private extension DumpTree {
     }
   }
   
-  func dumpTag(_ tag: Tag) {
+  func dumpTag(_ tag: Tag) { 
     print(tag.name, tag.position)
     for attribute in tag.attributes {
       print("- a: " + attribute.name + ": " + attribute.value)

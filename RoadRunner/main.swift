@@ -30,7 +30,6 @@ func parseFile(_ file: String) throws -> Tree {
 let argumentParser = ArgumentParser()
 argumentParser.parseArguments(CommandLine.arguments)
 
-print(CommandLine.arguments)
 if let dumpTreeFile = argumentParser.string(for: "tree") {
   let tree = try parseFile(dumpTreeFile)
   print(tree)
@@ -67,6 +66,7 @@ do {
   if let targetTag = targetTag,
     let fromBase = baseSubTree.elementById(targetTag),
     let fromReference = referenceSubTree.elementById(targetTag) {
+    print("Found tag: \(targetTag)")
     baseSubTree = fromBase
     referenceSubTree = fromReference
   }
