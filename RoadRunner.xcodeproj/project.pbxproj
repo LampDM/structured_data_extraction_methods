@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		372326F5227DAD4C0008BACC /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372326F4227DAD4C0008BACC /* Tree.swift */; };
 		372326F7227DB27F0008BACC /* StringOutputStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372326F6227DB27F0008BACC /* StringOutputStream.swift */; };
+		372326FB227DB5D50008BACC /* Algorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372326FA227DB5D50008BACC /* Algorithm.swift */; };
+		372326FD227DB5E50008BACC /* RoadRunnerLikeAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372326FC227DB5E50008BACC /* RoadRunnerLikeAlgorithm.swift */; };
+		372326FF227DBE810008BACC /* DumpWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372326FE227DBE810008BACC /* DumpWrapper.swift */; };
 		37347539227C6BDD001024A1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37347538227C6BDD001024A1 /* main.swift */; };
-		37347551227C6CA4001024A1 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37347541227C6CA4001024A1 /* Logger.swift */; };
 		37347552227C6CA4001024A1 /* Atheris.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37347542227C6CA4001024A1 /* Atheris.swift */; };
 		37347553227C6CA4001024A1 /* ArgumentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37347543227C6CA4001024A1 /* ArgumentParser.swift */; };
 		37347554227C6CA4001024A1 /* FileWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37347546227C6CA4001024A1 /* FileWriter.swift */; };
@@ -42,12 +44,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		372326F3227CC0770008BACC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		372326F4227DAD4C0008BACC /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		372326F6227DB27F0008BACC /* StringOutputStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringOutputStream.swift; sourceTree = "<group>"; };
+		372326FA227DB5D50008BACC /* Algorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Algorithm.swift; sourceTree = "<group>"; };
+		372326FC227DB5E50008BACC /* RoadRunnerLikeAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadRunnerLikeAlgorithm.swift; sourceTree = "<group>"; };
+		372326FE227DBE810008BACC /* DumpWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DumpWrapper.swift; sourceTree = "<group>"; };
+		3723275A228064880008BACC /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = RoadRunner/README.md; sourceTree = "<group>"; };
 		37347535227C6BDD001024A1 /* RoadRunner */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RoadRunner; sourceTree = BUILT_PRODUCTS_DIR; };
 		37347538227C6BDD001024A1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		37347541227C6CA4001024A1 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		37347542227C6CA4001024A1 /* Atheris.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Atheris.swift; sourceTree = "<group>"; };
 		37347543227C6CA4001024A1 /* ArgumentParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArgumentParser.swift; sourceTree = "<group>"; };
 		37347546227C6CA4001024A1 /* FileWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileWriter.swift; sourceTree = "<group>"; };
@@ -77,10 +81,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		372326F9227DB5BA0008BACC /* Algorithm */ = {
+			isa = PBXGroup;
+			children = (
+				372326FA227DB5D50008BACC /* Algorithm.swift */,
+				372326FC227DB5E50008BACC /* RoadRunnerLikeAlgorithm.swift */,
+				372326FE227DBE810008BACC /* DumpWrapper.swift */,
+			);
+			path = Algorithm;
+			sourceTree = "<group>";
+		};
 		3734752C227C6BDD001024A1 = {
 			isa = PBXGroup;
 			children = (
-				372326F3227CC0770008BACC /* README.md */,
+				3723275A228064880008BACC /* README.md */,
 				37347537227C6BDD001024A1 /* RoadRunner */,
 				37347536227C6BDD001024A1 /* Products */,
 			);
@@ -98,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				3734753F227C6C63001024A1 /* Core */,
+				372326F9227DB5BA0008BACC /* Algorithm */,
 				37347538227C6BDD001024A1 /* main.swift */,
 			);
 			path = RoadRunner;
@@ -117,7 +132,6 @@
 		37347540227C6CA4001024A1 /* Compiler */ = {
 			isa = PBXGroup;
 			children = (
-				37347541227C6CA4001024A1 /* Logger.swift */,
 				37347542227C6CA4001024A1 /* Atheris.swift */,
 				37347543227C6CA4001024A1 /* ArgumentParser.swift */,
 			);
@@ -241,18 +255,20 @@
 				37347556227C6CA4001024A1 /* InputStream.swift in Sources */,
 				37347565227C8275001024A1 /* DumpTree.swift in Sources */,
 				3734755B227C6CA4001024A1 /* LexicalAnalyzer.swift in Sources */,
+				372326FB227DB5D50008BACC /* Algorithm.swift in Sources */,
 				37347558227C6CA4001024A1 /* FileInputStream.swift in Sources */,
 				37347567227C8394001024A1 /* StandardOutputStream.swift in Sources */,
+				372326FD227DB5E50008BACC /* RoadRunnerLikeAlgorithm.swift in Sources */,
 				3734755C227C6CA4001024A1 /* TokenType.swift in Sources */,
 				37347555227C6CA4001024A1 /* FileOutputStream.swift in Sources */,
 				372326F5227DAD4C0008BACC /* Tree.swift in Sources */,
 				37347559227C6CA4001024A1 /* FileReader.swift in Sources */,
+				372326FF227DBE810008BACC /* DumpWrapper.swift in Sources */,
 				37347560227C7D5F001024A1 /* TreeParser.swift in Sources */,
 				37347554227C6CA4001024A1 /* FileWriter.swift in Sources */,
 				37347563227C7DA0001024A1 /* Node.swift in Sources */,
 				3734755A227C6CA4001024A1 /* LexAn.swift in Sources */,
 				3734755D227C6CA4001024A1 /* Symbol.swift in Sources */,
-				37347551227C6CA4001024A1 /* Logger.swift in Sources */,
 				37347553227C6CA4001024A1 /* ArgumentParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

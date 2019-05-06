@@ -1,0 +1,492 @@
+matches
+  b [888:11, 1625:17]: div
+  r [937:11, 1610:17]: div
+  matches
+    b [889:16, 912:7]: div
+    r [938:16, 961:7]: div
+    matches
+      b [890:6, 910:21]: h3
+      r [939:6, 959:21]: h3
+      matches
+        b [892:16, 907:22]: svg
+        r [941:16, 956:22]: svg
+        matches
+          b [893:21, 898:25]: g
+          r [942:21, 947:25]: g
+          matches
+            b [894:26, 894:69]: circle
+            r [943:26, 943:69]: circle
+          matches
+            b [895:26, 895:70]: circle
+            r [944:26, 944:70]: circle
+          matches
+            b [896:26, 896:70]: circle
+            r [945:26, 945:70]: circle
+          matches
+            b [897:26, 897:70]: circle
+            r [946:26, 946:70]: circle
+        matches
+          b [899:21, 904:25]: g
+          r [948:21, 953:25]: g
+          matches
+            b [900:26, 900:69]: circle
+            r [949:26, 949:69]: circle
+          matches
+            b [901:26, 901:70]: circle
+            r [950:26, 950:70]: circle
+          matches
+            b [902:26, 902:70]: circle
+            r [951:26, 951:70]: circle
+          matches
+            b [903:26, 903:70]: circle
+            r [952:26, 952:70]: circle
+        matches
+          b [905:21, 905:80]: circle
+          r [954:21, 954:80]: circle
+        matches
+          b [906:21, 906:87]: circle
+          r [955:21, 955:87]: circle
+      nameMatches
+        b [909:16, 909:85]: a, content: Testi
+        r [958:16, 958:97]: a, content: Avtomobilnost
+  matches
+    b [914:1, 916:7]: div
+    r [963:1, 965:7]: div
+    matches
+      b [915:6, 915:154]: a, content: Uredi
+      r [964:6, 964:154]: a, content: Uredi
+  matches
+    b [920:1, 1448:7]: div
+    r [969:1, 1408:7]: div
+    matches
+      b [921:6, 1447:12]: div
+      r [970:6, 1407:12]: div
+      matches
+        b [922:11, 979:20]: header
+        r [971:11, 1024:20]: header
+        matches
+          b [923:16, 947:7]: div
+          r [972:16, 996:7]: div
+          matches
+            b [924:6, 943:21]: h3
+            r [973:6, 992:21]: h3
+            matches
+              b [925:11, 940:17]: svg
+              r [974:11, 989:17]: svg
+              matches
+                b [926:16, 931:20]: g
+                r [975:16, 980:20]: g
+                matches
+                  b [927:21, 927:64]: circle
+                  r [976:21, 976:64]: circle
+                matches
+                  b [928:21, 928:65]: circle
+                  r [977:21, 977:65]: circle
+                matches
+                  b [929:21, 929:65]: circle
+                  r [978:21, 978:65]: circle
+                matches
+                  b [930:21, 930:65]: circle
+                  r [979:21, 979:65]: circle
+              matches
+                b [932:16, 937:20]: g
+                r [981:16, 986:20]: g
+                matches
+                  b [933:21, 933:64]: circle
+                  r [982:21, 982:64]: circle
+                matches
+                  b [934:21, 934:65]: circle
+                  r [983:21, 983:65]: circle
+                matches
+                  b [935:21, 935:65]: circle
+                  r [984:21, 984:65]: circle
+                matches
+                  b [936:21, 936:65]: circle
+                  r [985:21, 985:65]: circle
+              matches
+                b [938:16, 938:75]: circle
+                r [987:16, 987:75]: circle
+              matches
+                b [939:16, 939:82]: circle
+                r [988:16, 988:82]: circle
+            nameMatches
+              b [942:16, 942:85]: a, content: Testi
+              r [991:16, 991:97]: a, content: Avtomobilnost
+          matches
+            b [945:5, 945:205]: a
+            r [994:5, 994:219]: a
+        nameMatches
+          b [950:16, 950:75]: h1, content: Audi A6 50 TDI quattro: nemir v premijskem razredu
+          r [999:16, 999:87]: h1, content: Volvo XC 40 D4 AWD momentum: suvereno med najboljÅ¡e v razredu
+        nameMatches
+          b [952:16, 952:64]: div, content: Test nove generacije
+          r [1001:16, 1001:62]: div, content: Test novega modela
+        matches
+          b [954:16, 961:7]: div
+          r [1003:16, 1010:7]: div
+          nameMatches
+            b [955:6, 958:12]: div, content: | 28. december 2018 ob 08:51				
+	
+            r [1004:6, 1007:12]: div, content: | 25. januar 2019 ob 15:23				
+	
+            matches
+              b [957:16, 957:45]: strong, content: Miha Merljak
+              r [1006:16, 1006:45]: strong, content: Miha Merljak
+          matches
+            b [959:6, 960:75]: div, content: Ljubljana		 - 		MMC RTV SLO			
+            r [1008:6, 1009:75]: div, content: Ljubljana		 - 		MMC RTV SLO			
+        mismatch
+          b [964:1, 975:7]: div
+          r [1013:1, 1020:25]: figure
+          mismatch
+            b [965:6, 973:37]: div
+            r [1014:16, 1016:20]: a
+            mismatch
+              b [967:21, 972:30]: figure
+              r [1015:21, 1016:20]: img
+          mismatch
+            b [974:6, 974:69]: div
+            r [1018:21, 1019:151]: figcaption, content: XC40 se v mestu odliÄno zlije z okolico. Foto: David Å avli				
+        nameMatches
+          b [978:16, 978:212]: p, content: To je novi audi A6. V razred najdraÅ¾jih in najbolj premijskih Å¾rebcev je vnesel nemir, Å¡e preden 
+          r [1023:16, 1023:298]: p, content: XC 40 je najmanjÅ¡i Volvov SUV, ki se oblikovno skoraj v celotni naslanja na oba veÄja predhodnika.
+      matches
+        b [982:16, 1016:12]: div
+        r [1027:16, 1061:12]: div
+        matches
+          b [984:6, 987:22]: div
+          r [1029:6, 1032:22]: div
+          matches
+            b [986:16, 986:59]: div, content: Miha Merljak
+            r [1031:16, 1031:59]: div, content: Miha Merljak
+        nameMatches
+          b [988:11, 990:85]: div, content: 28. december 2018 ob 08:51
+          r [1033:11, 1035:85]: div, content: 25. januar 2019 ob 15:23
+          matches
+            b [989:37, 990:85]: br, content: Ljubljana		 - 		MMC RTV SLO			
+            r [1034:35, 1035:85]: br, content: Ljubljana		 - 		MMC RTV SLO			
+        matches
+          b [992:6, 1005:12]: div
+          r [1037:6, 1050:12]: div
+          matches
+            b [996:11, 996:364]: div
+            r [1041:11, 1041:377]: div
+          matches
+            b [997:11, 997:503]: div
+            r [1042:11, 1042:545]: div
+          matches
+            b [998:11, 998:461]: div
+            r [1043:11, 1043:310]: div
+          matches
+            b [999:11, 999:203]: a
+            r [1044:11, 1044:217]: a
+        matches
+          b [1008:6, 1015:15]: figure
+          r [1053:6, 1060:15]: figure
+          matches
+            b [1009:11, 1009:49]: h5, content: Poudarki
+            r [1054:11, 1054:49]: h5, content: Poudarki
+          matches
+            b [1010:11, 1014:31]: ul
+            r [1055:11, 1059:31]: ul
+            nameMatches
+              b [1011:36, 1011:97]: li, content: Zaradi videza se mu na avtocesti spoÅ¡tljivo umikajo
+              r [1056:36, 1056:101]: li, content: XC40 se pohvali z robustno gradnjo in Å¡vedskim dizajnom
+            nameMatches
+              b [1012:36, 1012:102]: li, content: Cesto in promet skenira s kopico radarjev, kamer in tipal
+              r [1057:36, 1057:87]: li, content: Kabina je prostorna in kakovostno izdelana
+            nameMatches
+              b [1013:36, 1013:114]: li, content: 50 TDI oznaÄuje trilitrski turbodizel, podkrepljen z elektromotorjem
+              r [1058:36, 1058:115]: li, content: Dizel z vrha ponudbe je zelo zmogljiv, a za mestno uporabo prerobusten
+      matches
+        b [1019:11, 1332:17]: div
+        r [1064:11, 1294:17]: div
+        matches
+          b [1023:1, 1032:7]: div
+          r [1067:21, 1069:7]: div
+        matches
+          b [1035:16, 1331:26]: article
+          r [1072:16, 1293:26]: article
+          matches
+            b [1038:1, 1084:10]: figure
+            r [1074:1, 1081:50]: figure
+            mismatch
+              b [1039:6, 1039:52]: div, content: Oglas
+              r [1075:46, 1077:50]: a
+            mismatch
+              b [1042:6, 1083:197]: div
+              r [1078:46, 1080:59]: figcaption, content: XC40 se v mestu odliÄno zlije z okolico. Foto: David Å avli
+									
+              mismatch
+                b [1077:10, 1083:7]: div
+                r [1079:51, 1079:83]: span
+          mismatch
+            b [1093:1, 1093:21]: p
+            r [1081:50, 1122:213]: figure
+          nameMatches
+            b [1093:21, 1093:573]: p, content: Samo poglejte njegovo masko â to ogromno satovje z radarji na takem poloÅ¾aju, da se ti na avtoces
+            r [1122:213, 1122:573]: p, content: Volvo se je niÅ¾jih srednjih razredov v preteklosti izogibal ali pa je vanje vstopal z zelo niÅ¡nimi
+          nameMatches
+            b [1093:573, 1093:1141]: p, content: VozniÅ¡ki delovni prostor je novo poglavje digitalne dobe, z dvema ogromnima zaslonoma, ki tako kot 
+            r [1122:573, 1122:1114]: p, content: Å e posebej hvalimo Å¡tevilo, iznajdljivost in velikost razliÄnih odlagalnih prostorov ter Å¡iroke,
+          mismatch
+            b [1093:1141, 1093:1377]: p, content: Äe vam pogled na Audijev spisek dodatne opreme ne odvzame volje do Å¾ivljenja, potem vsekakor toplo
+            r [1122:1114, 1129:50]: figure
+          nameMatches
+            b [1093:1377, 1093:1944]: p, content: Enako velja za seksi luÄi z inteligentno matriÄno osvetlitvijo, pa za Å¡portno podvozje in vsekako
+            r [1129:50, 1129:516]: p, content: XC 40 je od tal odmaknjen konkretnih 21 cm, a sta vzmetenje in krmilni mehanizem tako nastavljena, d
+          nameMatches
+            b [1093:1944, 1093:2134]: p
+            r [1129:516, 1129:787]: p, content: PreskuÅ¡ani 2-litrski dizel s 190 KM predstavlja vrh ponudbe, ki z moÄjo, udobjem in tudi povpreÄn
+          nameMatches
+            b [1093:2134, 1093:2185]: p
+            r [1129:787, 1129:1095]: p, content: XC 40 je s Ävrsto gradnjo, funkcionalno in udobno kabino ter Å¡tevilnimi asistenÄnimi sistemi in i
+          nameMatches
+            b [1093:2185, 1093:2235]: p, content: - na testu Audi A6 50 TDI quattro tiptronic
+            r [1129:1095, 1129:1195]: p
+          nameMatches
+            b [1093:2235, 1093:2387]: p
+            r [1129:1195, 1129:1663]: p, content: Mere:
+            mismatch
+              b [1093:2238, 1093:2260]: strong, content: Mere:
+              r [1129:1203, 1129:1663]: br, content: - dolÅ¾ina: 4,4 m
+          nameMatches
+            b [1093:2387, 1093:2725]: p
+            r [1129:1663, 1129:2054]: p, content: StroÅ¡ki pri 15.000 km in 5-letni uporabi:
+            mismatch
+              b [1093:2390, 1093:2413]: strong, content: Pogon:
+              r [1129:1708, 1129:2054]: br, content: - nakupna cena: 43.619 EUR
+          mismatch
+            b [1093:2725, 1093:3097]: p
+            r [1129:2054, 1133:45]: figure
+            mismatch
+              b [1093:2728, 1093:2787]: strong, content: StroÅ¡ki pri 15.000 km in 5-letni uporabi:
+              r [1130:41, 1132:47]: div
+          mismatch
+            b [1093:3097, 1093:3138]: p, content: - stroÅ¡ki skupaj: 1.001 EUR/mesec
+            r [1134:1, 1291:22]: div
+      matches
+        b [1334:11, 1411:7]: div
+        r [1296:11, 1373:7]: div
+        matches
+          b [1335:6, 1410:17]: div
+          r [1297:6, 1372:17]: div
+          matches
+            b [1338:11, 1344:17]: div
+            r [1300:11, 1306:17]: div
+            matches
+              b [1341:16, 1343:172]: div
+              r [1303:16, 1305:172]: div
+          matches
+            b [1347:6, 1409:22]: div
+            r [1309:6, 1371:22]: div
+            matches
+              b [1348:11, 1348:62]: h4, content: Zadnje iz sekcije
+              r [1310:11, 1310:63]: h4, content: Zadnje iz sekcije
+            matches
+              b [1349:26, 1360:22]: div
+              r [1311:26, 1322:22]: div
+              matches
+                b [1350:21, 1359:27]: div
+                r [1312:21, 1321:27]: div
+                matches
+                  b [1351:26, 1355:32]: div
+                  r [1313:26, 1317:32]: div
+                  matches
+                    b [1352:31, 1354:35]: a
+                    r [1314:31, 1316:35]: a
+                    matches
+                      b [1353:36, 1354:35]: img
+                      r [1315:36, 1316:35]: img
+                matches
+                  b [1356:26, 1358:32]: div
+                  r [1318:26, 1320:32]: div
+                  nameMatches
+                    b [1357:31, 1357:334]: a, content: Ford kuga je z zamenjavo generacije postala tudi prikljuÄni hibrid
+                    r [1319:31, 1319:335]: a, content: LJFW: "Å otor bi napolnili, pa Äe bi bil Å¡e 20 metrov daljÅ¡i"
+            matches
+              b [1361:26, 1372:22]: div
+              r [1323:26, 1334:22]: div
+              matches
+                b [1362:21, 1371:27]: div
+                r [1324:21, 1333:27]: div
+                matches
+                  b [1363:26, 1367:32]: div
+                  r [1325:26, 1329:32]: div
+                  matches
+                    b [1364:31, 1366:35]: a
+                    r [1326:31, 1328:35]: a
+                    matches
+                      b [1365:36, 1366:35]: img
+                      r [1327:36, 1328:35]: img
+                matches
+                  b [1368:26, 1370:32]: div
+                  r [1330:26, 1332:32]: div
+                  nameMatches
+                    b [1369:31, 1369:349]: a, content: Å½enske so poÅ¡kodbam v prometnih nesreÄah izpostavljene bolj kot moÅ¡ki
+                    r [1331:31, 1331:351]: a, content: Foto: NoÄ v Louvru - aperitiv pri Moni Lisi, veÄerja pri MiloÅ¡ki Veneri 
+            matches
+              b [1373:26, 1384:22]: div
+              r [1335:26, 1346:22]: div
+              matches
+                b [1374:21, 1383:27]: div
+                r [1336:21, 1345:27]: div
+                matches
+                  b [1375:26, 1379:32]: div
+                  r [1337:26, 1341:32]: div
+                  matches
+                    b [1376:31, 1378:35]: a
+                    r [1338:31, 1340:35]: a
+                    matches
+                      b [1377:36, 1378:35]: img
+                      r [1339:36, 1340:35]: img
+                matches
+                  b [1380:26, 1382:32]: div
+                  r [1342:26, 1344:32]: div
+                  nameMatches
+                    b [1381:31, 1381:274]: a, content: Pripravite se na ofenzivo prikljuÄnih hibridov
+                    r [1343:31, 1343:334]: a, content: Ford kuga je z zamenjavo generacije postala tudi prikljuÄni hibrid
+            matches
+              b [1385:26, 1396:22]: div
+              r [1347:26, 1358:22]: div
+              matches
+                b [1386:21, 1395:27]: div
+                r [1348:21, 1357:27]: div
+                matches
+                  b [1387:26, 1391:32]: div
+                  r [1349:26, 1353:32]: div
+                  matches
+                    b [1388:31, 1390:35]: a
+                    r [1350:31, 1352:35]: a
+                    matches
+                      b [1389:36, 1390:35]: img
+                      r [1351:36, 1352:35]: img
+                matches
+                  b [1392:26, 1394:32]: div
+                  r [1354:26, 1356:32]: div
+                  nameMatches
+                    b [1393:31, 1393:447]: a, content: Bentley se je ob stoletnici spomnil blowerja, enega najbolj ikonskih avtomobilov iz dirkaÅ¡ke pretek
+                    r [1355:31, 1355:219]: a, content: Äokoladno-malinova zebra torta
+            matches
+              b [1397:26, 1408:22]: div
+              r [1359:26, 1370:22]: div
+              matches
+                b [1398:21, 1407:27]: div
+                r [1360:21, 1369:27]: div
+                matches
+                  b [1399:26, 1403:32]: div
+                  r [1361:26, 1365:32]: div
+                  matches
+                    b [1400:31, 1402:35]: a
+                    r [1362:31, 1364:35]: a
+                    matches
+                      b [1401:36, 1402:35]: img
+                      r [1363:36, 1364:35]: img
+                matches
+                  b [1404:26, 1406:32]: div
+                  r [1366:26, 1368:32]: div
+                  nameMatches
+                    b [1405:31, 1405:325]: a, content: Rekorderska steza na slani ravnici Bonneville potrebuje reÅ¡itev
+                    r [1367:31, 1367:311]: a, content: LJFW: Prvi veÄer je minil v znamenju izbora Fashion Scout SEE 
+      matches
+        b [1414:11, 1445:7]: div
+        r [1376:11, 1405:7]: div
+        matches
+          b [1417:11, 1423:32]: div
+          r [1379:11, 1383:32]: div
+          nameMatches
+            b [1418:36, 1418:123]: a, content: Audi
+            r [1380:36, 1380:123]: a, content: Test
+          nameMatches
+            b [1419:36, 1419:119]: a, content: A6
+            r [1381:36, 1381:125]: a, content: volvo
+          nameMatches
+            b [1420:36, 1420:133]: a, content: liumuzina
+            r [1382:36, 1382:123]: a, content: XC40
+        matches
+          b [1425:6, 1435:12]: div
+          r [1385:6, 1395:12]: div
+          matches
+            b [1426:11, 1426:122]: a, content: Prijavi napako
+            r [1386:11, 1386:122]: a, content: Prijavi napako
+          matches
+            b [1427:11, 1427:354]: div
+            r [1387:11, 1387:369]: div
+          matches
+            b [1428:11, 1428:476]: div
+            r [1388:11, 1388:518]: div
+          matches
+            b [1429:11, 1429:466]: div
+            r [1389:11, 1389:317]: div
+        matches
+          b [1437:6, 1444:15]: figure
+          r [1397:6, 1404:15]: figure
+          matches
+            b [1438:11, 1438:48]: div, content: Oglas
+            r [1398:11, 1398:48]: div, content: Oglas
+          matches
+            b [1441:11, 1443:172]: div
+            r [1401:11, 1403:172]: div
+  matches
+    b [1452:1, 1513:7]: div
+    r [1410:1, 1410:34]: div
+  matches
+    b [1515:6, 1572:7]: div
+    r [1413:1, 1436:7]: div
+    mismatch
+      b [1516:6, 1571:12]: div
+      r [1414:6, 1434:21]: h3
+      mismatch
+        b [1517:11, 1570:17]: div
+        r [1416:16, 1431:22]: svg
+        mismatch
+          b [1518:11, 1561:20]: figure
+          r [1417:21, 1422:25]: g
+          mismatch
+            b [1519:16, 1519:53]: div, content: Oglas
+            r [1418:26, 1418:69]: circle
+          mismatch
+            b [1522:16, 1560:319]: div
+            r [1419:26, 1419:70]: circle
+        mismatch
+          b [1562:11, 1569:20]: figure
+          r [1423:21, 1428:25]: g
+          mismatch
+            b [1563:16, 1563:53]: div, content: Oglas
+            r [1424:26, 1424:69]: circle
+          mismatch
+            b [1566:16, 1568:173]: div
+            r [1425:26, 1425:70]: circle
+  matches
+    b [1572:7, 1622:7]: div
+    r [1438:1, 1499:7]: div
+    matches
+      b [1576:6, 1601:7]: div
+      r [1439:6, 1497:37]: div
+      mismatch
+        b [1577:6, 1600:11]: h3
+        r [1441:36, 1454:27]: div
+        mismatch
+          b [1579:16, 1594:22]: svg
+          r [1442:26, 1453:32]: div
+          mismatch
+            b [1580:21, 1585:25]: g
+            r [1443:31, 1445:179]: a
+            mismatch
+              b [1581:26, 1581:69]: circle
+              r [1445:31, 1445:179]: img
+          mismatch
+            b [1586:21, 1591:25]: g
+            r [1446:31, 1451:36]: h3
+            mismatch
+              b [1587:26, 1587:69]: circle
+              r [1447:106, 1449:43]: span
+            mismatch
+              b [1588:26, 1588:70]: circle
+              r [1450:36, 1450:253]: a, content: Å½enske so poÅ¡kodbam v prometnih nesreÄah izpostavljene bolj kot moÅ¡ki
+          mismatch
+            b [1592:21, 1592:80]: circle
+            r [1452:31, 1452:66]: p, content: Razvoj avtomobilske varnosti
+    mismatch
+      b [1603:6, 1605:12]: div
+      r [1498:6, 1498:114]: a, content: VeÄ novic

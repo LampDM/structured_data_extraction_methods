@@ -111,11 +111,7 @@ extension LexAn {
         return parseStringConstant()
       }
       
-      bufferCharacter = character
-      
-      if isNumeric(character) {
-        return parseNumericConstant()
-      }
+      bufferCharacter = "x"
     }
     return nil
   }
@@ -129,11 +125,25 @@ private extension LexAn {
   func parseTagContent() -> Symbol {
     func didCloseTag(lexeme: String) -> String.Index? {
       guard let index = lexeme.lastIndex(of: "<") else { return nil }
-      let nextIndex = lexeme.index(after: index)
-      if isSlash(lexeme[nextIndex]) {
+      if isSlash(lexeme[lexeme.index(after: index)]) {
         return lexeme.index(before: index)
       }
-      return nil
+      var string = false
+      for (index, char) in lexeme[index...].enumerated().dropFirst().dropLast() {
+        if index == 1 && !isAlphabet(char) { return nil }
+        if isDoubleQuote(char) || char == "'" {
+          if string {
+            string = false
+            continue
+          }
+          string = true
+        }
+        if string { continue }
+        guard isAlphabet(char) || isAssign(char) || isWhitespace(char) || char == ":" else {
+          return nil
+        }
+      }
+      return lexeme.index(before: index)
     }
     
     var lexeme = ""
@@ -165,8 +175,33 @@ private extension LexAn {
     func parseComment() -> Symbol? {
       var buffer = ""
       while let char = nextCharacter() {
+        if char == "\n" {
+          currentLocation = Location(row: currentLocation.row + 1, column: 1)
+        }
+        if char == "\t" {
+          currentLocation = Location(row: currentLocation.row, column: currentLocation.column + 4)
+        }
+        
         buffer += "\(char)"
         if buffer.count >= 3 && buffer[buffer.index(buffer.endIndex, offsetBy: -3)...] == "-->" {
+          return parseSymbol()
+        }
+      }
+      return nil
+    }
+    
+    func ignoreScriptTag() -> Symbol? {
+      var buffer = ""
+      while let char = nextCharacter() {
+        if char == "\n" {
+          currentLocation = Location(row: currentLocation.row + 1, column: 1)
+        }
+        if char == "\t" {
+          currentLocation = Location(row: currentLocation.row, column: currentLocation.column + 4)
+        }
+        
+        buffer += "\(char)"
+        if buffer.count >= 8 && buffer[buffer.index(buffer.endIndex, offsetBy: -8)...] == "/script>" {
           return parseSymbol()
         }
       }
@@ -194,6 +229,9 @@ private extension LexAn {
       if lexeme.count == 4 && lexeme == "<!--" {
         return parseComment()
       }
+      if lexeme.count == 7 && lexeme == "<script" {
+        return ignoreScriptTag()
+      }
     }
     
     return Symbol(token: tokenType,
@@ -204,7 +242,7 @@ private extension LexAn {
   func parseIdentifier(_ character: Character) -> Symbol {
     var lexeme = "\(character)"
     while let char = nextCharacter() {
-      if isAlphabet(char) || isMinus(char) {
+      if isAlphabet(char) || isMinus(char) || char == ":" {
         lexeme += "\(char)"
         continue
       }
@@ -226,28 +264,6 @@ private extension LexAn {
     }
     return nil
   }
-  
-  func parseNumericConstant() -> Symbol {
-    var lexeme = ""
-    var tokenType = Token.integerLiteral
-    while let character = nextCharacter() {
-      if isNumeric(character) {
-        lexeme.append(character)
-        continue
-      }
-      if character == "." && tokenType == .integerLiteral {
-        lexeme.append(character)
-        tokenType = .floatingLiteral
-        continue
-      }
-      
-      bufferCharacter = character
-      break
-    }
-    
-    let newPosition = position(count: lexeme.count)
-    return Symbol(token: tokenType, lexeme: lexeme, position: newPosition)
-  }
 }
 
 private extension LexAn {
@@ -268,7 +284,7 @@ private extension LexAn {
   }
   
   func isAlphabet(_ char: Character) -> Bool {
-    return char >= "a" && char <= "z" || char >= "A" && char <= "Z"
+    return char >= "a" && char <= "z" || char >= "A" && char <= "Z" || char == "š" || char == "Š" || char == "ž" || char == "Ž" || char == "č" || char == "Č"
   }
   
   func isMinus(_ char: Character) -> Bool {
