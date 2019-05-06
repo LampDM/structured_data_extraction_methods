@@ -42,3 +42,42 @@ Since most of the time we are not interested in parsing the whole HTML document,
 ```console
 ./main base_file=path/to/base/file.html reference_file=path/to/reference/file.html tag_id=content
 ```
+
+RoadRunner program also enable's us to parse and output a tree-like representation of the HTML document. We achieve this by providing a `tree=file.html` argument (and optionally `output_file` argument as well).
+
+```console
+./main tree=path/to/base/file.html [output_file=output.txt]
+```
+
+will produce tree which will look something like:
+
+```
+ [0:0, 0:0]:
+  !DOCTYPE [1:1, 32:9]:
+  - a: html: 
+    head [2:1, 16:8]:
+      style [3:6, 11:14]:
+      - v: position:relative;
+		background-color:#ffffff;
+		height:68px;
+		padding-top:20px;
+		line-height:50px;
+		overflow:hidden;
+		z-index:2;
+	
+    body [17:1, 32:8]:
+      div [18:6, 30:12]:
+      - a: id: neki
+        div [19:11, 19:25]:
+        - v: Efg
+        div [24:11, 24:22]:
+        div [25:11, 25:22]:
+        div [26:11, 29:17]:
+        - a: class: joze
+          h1 [27:16, 27:32]:
+          - v: Title 2
+          p [28:16, 29:17]:
+          - v: Test
+		
+      br [31:6, 31:11]:
+```
