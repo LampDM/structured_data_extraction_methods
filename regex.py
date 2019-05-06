@@ -58,7 +58,7 @@ def parse_rtv_content(file_path: str):
         match_result['Content'] = remove_tags(match_result['Content'].replace('\t', '').replace('\n', '').strip())
         return match_result
 
-    with open(file_path, 'r', encoding="utf-8") as fp:
+    with open(file_path, 'r', encoding="latin-1") as fp:
         html_content = fp.read()
         match = re.search(rtv_article_pattern, html_content)
         return to_json(_clean_data(match.groupdict()))
@@ -93,8 +93,8 @@ def parse_pzs_content(file_path: str):
 
 
 if __name__ == "__main__":
-    rtv_pages = ['WebPages/rtvslo.si/Audi A6 50 TDI quattro_ nemir v premijskem razredu - RTVSLO.si.html',
-                 'WebPages/rtvslo.si/Volvo XC 40 D4 AWD momentum_ suvereno med najboljše v razredu - RTVSLO.si.html']
+    rtv_pages = ['WebPages/rtvslo.si/Audi A6-rendered-again.html',
+                 'WebPages/rtvslo.si/Volvo XC 40-rendered-again.html']
 
     overstock_pages = ['WebPages/overstock.com/jewelry01.html',
                        'WebPages/overstock.com/jewelry02.html']
