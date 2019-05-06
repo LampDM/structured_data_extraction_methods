@@ -81,3 +81,8 @@ will produce tree which will look something like:
 		
       br [31:6, 31:11]:
 ```
+
+----
+
+Lexer and other useful tools based on: 
+https://gitlab.com/seckmaster/atheris-sml
