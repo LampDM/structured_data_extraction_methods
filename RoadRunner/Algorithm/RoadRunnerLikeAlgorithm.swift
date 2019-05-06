@@ -42,8 +42,31 @@ private extension RoadRunnerLikeAlgorithm {
   }
   
   func compareChildren(_ firstChildren: [Tree], _ secondChildren: [Tree]) -> [Wrapper] {
+    guard firstChildren.count == secondChildren.count else { return fallbackCompare(firstChildren, secondChildren) }
     let match = zip(firstChildren, secondChildren).map(buildWrapper)
     return match
+  }
+  
+  private func fallbackCompare(_ firstChildren: [Tree], _ secondChildren: [Tree]) -> [Wrapper] {
+    func mismatches(_ wrappers: [Wrapper]) -> Int {
+      return wrappers.reduce(0) { acc, next in acc + next.mismatchCount }
+    }
+    
+    let minList: [Tree]
+    let maxList: [Tree]
+    if firstChildren.count < secondChildren.count {
+      minList = firstChildren
+      maxList = secondChildren
+    } else {
+      minList = secondChildren
+      maxList = firstChildren
+    }
+    
+    let wrappers = (0..<(maxList.count - minList.count + 1))
+      .map { zip(minList, maxList[$0...]).map(buildWrapper) }
+    let bestMapping = wrappers
+      .min { mismatches($0) < mismatches($1) }
+    return bestMapping!
   }
   
   func compareTags(_ first: Tag, second: Tag) -> CompareResult.Compare {
@@ -67,6 +90,7 @@ public extension RoadRunnerLikeAlgorithm {
       case mismatch
     }
     case compare(matching: Compare, base: Tag, reference: Tag)
+    // NOTE: - not used atm
     case baseMissing(reference: Tag)
     case referenceMissing(base: Tag)
   }
@@ -74,6 +98,36 @@ public extension RoadRunnerLikeAlgorithm {
   enum Wrapper {
     case node(match: CompareResult, children: [Wrapper])
     case empty
+  }
+}
+
+extension RoadRunnerLikeAlgorithm.Wrapper {
+  var mismatchCount: Int {
+    return countMismatches(in: self)
+  }
+  
+  private func countMismatches(in wrapper: RoadRunnerLikeAlgorithm.Wrapper) -> Int {
+    switch wrapper {
+    case .node(let match, let children):
+      var count = 0
+      switch match {
+      case .compare(let matching, _, _):
+        switch matching {
+        case .mismatch:
+          count += 1
+        default:
+          break
+        }
+      default:
+        break
+      }
+      for child in children {
+        count += countMismatches(in: child)
+      }
+      return count
+    case .empty:
+      return 0
+    }
   }
 }
 
