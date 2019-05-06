@@ -10,17 +10,6 @@ import Foundation
 
 private let limit = 100
 
-private extension Optional where Wrapped == String {
-  var isNilOrEmpty: Bool {
-    switch self {
-    case .some(let string):
-      return string.isEmpty
-    case .none:
-      return true
-    }
-  }
-}
-
 class DumpWrapper {
   typealias Tree = RoadRunnerLikeAlgorithm.Wrapper
   let tree: Tree

@@ -16,8 +16,6 @@ public enum Token: String {
   case backslash
   case identifier
   case stringLiteral
-  case integerLiteral
-  case floatingLiteral
   
   case assign
   case eof

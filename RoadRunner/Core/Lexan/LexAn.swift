@@ -264,28 +264,6 @@ private extension LexAn {
     }
     return nil
   }
-  
-  func parseNumericConstant() -> Symbol {
-    var lexeme = ""
-    var tokenType = Token.integerLiteral
-    while let character = nextCharacter() {
-      if isNumeric(character) {
-        lexeme.append(character)
-        continue
-      }
-      if character == "." && tokenType == .integerLiteral {
-        lexeme.append(character)
-        tokenType = .floatingLiteral
-        continue
-      }
-      
-      bufferCharacter = character
-      break
-    }
-    
-    let newPosition = position(count: lexeme.count)
-    return Symbol(token: tokenType, lexeme: lexeme, position: newPosition)
-  }
 }
 
 private extension LexAn {
