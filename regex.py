@@ -93,14 +93,14 @@ def parse_pzs_content(file_path: str):
 
 
 if __name__ == "__main__":
-    rtv_pages = ['WebPages/rtvslo.si/Audi A6-rendered-again.html',
-                 'WebPages/rtvslo.si/Volvo XC 40-rendered-again.html']
+    rtv_pages = ['WebPages/rtvslo.si/Audi1.html',
+                 'WebPages/rtvslo.si/Volvo1.html']
 
     overstock_pages = ['WebPages/overstock.com/jewelry01.html',
                        'WebPages/overstock.com/jewelry02.html']
 
-    pzs_pages = ['WebPages/Pzs.si/PZS  Triglavski dom na Kredarici.html',
-                 'WebPages/Pzs.si/PZS  Vojkova koča na Nanosu.html']
+    pzs_pages = ['WebPages/Pzs.si/pzs1.html',
+                 'WebPages/Pzs.si/pzs2.html']
 
     for page in rtv_pages:
         parse_rtv_content(page)

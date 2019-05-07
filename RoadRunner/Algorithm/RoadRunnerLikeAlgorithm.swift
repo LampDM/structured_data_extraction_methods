@@ -52,6 +52,16 @@ private extension RoadRunnerLikeAlgorithm {
       return wrappers.reduce(0) { acc, next in acc + next.mismatchCount }
     }
     
+    if firstChildren.isEmpty, let referenceTag = secondChildren.first?.tag {
+      return [.node(match: .baseMissing(reference: referenceTag),
+                    children: compareChildren([], secondChildren.first!.children))]
+    }
+    
+    if secondChildren.isEmpty, let baseTag = firstChildren.first?.tag {
+      return [.node(match: .referenceMissing(base: baseTag),
+                    children: compareChildren([], firstChildren.first!.children))]
+    }
+    
     let minList: [Tree]
     let maxList: [Tree]
     if firstChildren.count < secondChildren.count {
@@ -63,11 +73,12 @@ private extension RoadRunnerLikeAlgorithm {
     }
     
     let wrappers = (0..<(maxList.count - minList.count + 1))
-      .map { zip(minList, maxList[$0...]).map(buildWrapper) }
-    let bestMapping = wrappers
-      .min { mismatches($0) < mismatches($1) }
-    let heights = wrappers.enumerated().map { ($0.offset, $0.element.map { $0.height }) }
-    return bestMapping!
+      .map { zip(minList, maxList[$0...]).map(buildWrapper)
+    }
+    let heights = wrappers
+      .map { ($0, $0.map { $0.height }.max()!) }
+      .max { $0.1 > $1.1 }
+    return heights!.0
   }
   
   func compareTags(_ first: Tag, second: Tag) -> CompareResult.Compare {
@@ -140,6 +151,20 @@ extension RoadRunnerLikeAlgorithm.Wrapper {
     case .node(_, let children):
       let maxHeightChild = children.map { $0.height }.max() ?? 0
       return maxHeightChild + 1
+    case .empty:
+      return 0
+    }
+  }
+  
+  var count: Int {
+    return countNodes(in: self)
+  }
+  
+  func countNodes(in: RoadRunnerLikeAlgorithm.Wrapper) -> Int {
+    switch self {
+    case .node(_, let children):
+      let sum = children.reduce(0) { $0 + $1.count }
+      return sum + 1
     case .empty:
       return 0
     }

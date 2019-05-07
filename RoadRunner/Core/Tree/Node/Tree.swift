@@ -47,6 +47,24 @@ public extension Tree {
 }
 
 public extension Tree {
+  var tag: Tag? {
+    switch self {
+    case .node(let tag, _):
+      return tag
+    case .empty:
+      return nil
+    }
+  }
+  
+  var children: [Tree] {
+    switch self {
+    case .node(_, let children):
+      return children
+    case .empty:
+      return []
+    }
+  }
+  
   var height: Int {
     return calculateHeight(in: self)
   }

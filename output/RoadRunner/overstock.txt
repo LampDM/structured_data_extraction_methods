@@ -1,0 +1,32 @@
+matches
+  b [0:0, 0:0]: 
+  r [0:0, 0:0]: 
+  matches
+    b [1:1, 572:51]: html
+    r [1:1, 440:50]: html
+    matches
+      b [1:7, 63:57]: head
+      r [1:7, 62:127]: head
+      matches
+        b [2:1, 62:127]: meta
+        r [2:1, 2:589]: meta
+        Reference missing
+          b [3:1, 62:127]: meta, content: 
+          Base missing
+            r [[5:1, 62:127]: meta, content: 
+            Base missing
+              r [[9:1, 9:56]: title, content: Overstock.com, save up to 80% every day!
+    matches
+      b [71:1, 572:44]: body
+      r [71:1, 440:43]: body
+      matches
+        b [142:1, 440:43]: input
+        r [142:1, 142:50]: input
+        Reference missing
+          b [143:1, 180:17]: table, content: 
+          Base missing
+            r [[144:1, 180:9]: tbody, content: 
+            Base missing
+              r [[144:8, 158:11]: tr, content: 
+              Base missing
+                r [[145:1, 145:20]: td, content: 
