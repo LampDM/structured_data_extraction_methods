@@ -111,7 +111,12 @@ extension LexAn {
         return parseStringConstant()
       }
       
+      if character == "'" {
+        return parseStringConstantSingleQuote()
+      }
+      
       bufferCharacter = "x"
+      potentiallyParsingTagContent = true
     }
     return nil
   }
@@ -242,7 +247,7 @@ private extension LexAn {
   func parseIdentifier(_ character: Character) -> Symbol {
     var lexeme = "\(character)"
     while let char = nextCharacter() {
-      if isAlphabet(char) || isMinus(char) || char == ":" {
+      if isAlphabet(char) || isMinus(char) || char == ":" || isNumeric(char) {
         lexeme += "\(char)"
         continue
       }
@@ -258,9 +263,20 @@ private extension LexAn {
       if character == "\"" {
         let newPosition = position(count: lexeme.count + 2)
         return Symbol(token: .stringLiteral, lexeme: lexeme, position: newPosition)
-      } else {
-        lexeme.append(character)
       }
+      lexeme.append(character)
+    }
+    return nil
+  }
+  
+  func parseStringConstantSingleQuote() -> Symbol? {
+    var lexeme = ""
+    while let character = nextCharacter() {
+      if character == "'" {
+        let newPosition = position(count: lexeme.count + 2)
+        return Symbol(token: .stringLiteral, lexeme: lexeme, position: newPosition)
+      }
+      lexeme.append(character)
     }
     return nil
   }

@@ -91,10 +91,15 @@ do {
     referenceSubTree = fromReference
   }
   
+  print("Base tree size: \(baseSubTree.count)")
+  print("Reference tree size: \(referenceSubTree.count)")
+  
   print("Initiating road runner ...")
   let algorithm = RoadRunnerLikeAlgorithm(baseTree: baseSubTree,
                                           referenceTree: referenceSubTree)
   let wrapper = algorithm.buildWrapper()
+  print("Wrapper height: \(wrapper.height)")
+  
   let dump = DumpWrapper(tree: wrapper, outputStream: outputStream)
   dump.dump()
 } catch {

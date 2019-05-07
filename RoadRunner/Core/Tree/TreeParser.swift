@@ -49,7 +49,7 @@ private extension TreeParser {
       return .node(tag: tag, children: [])
     }
     if symbol.token != .closeTag {
-      print(symbol)
+      print(symbol.token, symbol.lexeme, symbol.position)
       fatalError("Expecting close tag")
     }
     nextSymbol()
@@ -80,7 +80,7 @@ private extension TreeParser {
     }
     
     guard expecting(.closeTagIdentifier) else {
-      print(symbol)
+      print(symbol.token, symbol.lexeme, symbol.position)
       fatalError("Expecting close tag identifier")
     }
     let closingIdentifier = symbol.lexeme[symbol.lexeme.index(symbol.lexeme.startIndex, offsetBy: 2)...]
@@ -94,6 +94,7 @@ private extension TreeParser {
     nextSymbol()
     let endPosition = symbol.position
     guard expecting(.closeTag) else {
+      print(symbol.token, symbol.position)
       fatalError("Expecting close tag")
     }
     nextSymbol()
@@ -115,6 +116,7 @@ private extension TreeParser {
       }
       nextSymbol()
       guard expecting(.stringLiteral) else {
+        print(symbol.token, symbol.lexeme, symbol.position)
         fatalError("Expecting string constant")
       }
       let value = symbol.lexeme
