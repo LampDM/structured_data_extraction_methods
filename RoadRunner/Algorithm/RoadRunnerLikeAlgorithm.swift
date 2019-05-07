@@ -66,6 +66,7 @@ private extension RoadRunnerLikeAlgorithm {
       .map { zip(minList, maxList[$0...]).map(buildWrapper) }
     let bestMapping = wrappers
       .min { mismatches($0) < mismatches($1) }
+    let heights = wrappers.enumerated().map { ($0.offset, $0.element.map { $0.height }) }
     return bestMapping!
   }
   
@@ -125,6 +126,20 @@ extension RoadRunnerLikeAlgorithm.Wrapper {
         count += countMismatches(in: child)
       }
       return count
+    case .empty:
+      return 0
+    }
+  }
+  
+  var height: Int {
+    return calculateHeight(in: self)
+  }
+  
+  private func calculateHeight(in wrapper: RoadRunnerLikeAlgorithm.Wrapper) -> Int {
+    switch wrapper {
+    case .node(_, let children):
+      let maxHeightChild = children.map { $0.height }.max() ?? 0
+      return maxHeightChild + 1
     case .empty:
       return 0
     }

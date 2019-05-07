@@ -46,6 +46,36 @@ public extension Tree {
   }
 }
 
+public extension Tree {
+  var height: Int {
+    return calculateHeight(in: self)
+  }
+  
+  private func calculateHeight(in tree: Tree) -> Int {
+    switch tree {
+    case .node(_, let children):
+      let maxHeightChild = children.map { $0.height }.max() ?? 0
+      return maxHeightChild + 1
+    case .empty:
+      return 0
+    }
+  }
+  
+  var count: Int {
+    return countNodes(in: self)
+  }
+  
+  func countNodes(in: Tree) -> Int {
+    switch self {
+    case .node(_, let children):
+      let sum = children.reduce(0) { $0 + $1.count }
+      return sum + 1
+    case .empty:
+      return 0
+    }
+  }
+}
+
 extension Tree: CustomStringConvertible {
   public var description: String {
     let outputStream = StringOutputStream()
