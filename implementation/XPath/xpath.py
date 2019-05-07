@@ -4,7 +4,7 @@ import sys
 
 
 def jewelry(page):
-    doc = html.fromstring(open('../WebPages/overstock.com/{}'.format(page)).read())
+    doc = html.fromstring(open('../../input/overstock.com/{}'.format(page)).read())
     count = doc.xpath("/html/body/table[2]/tbody/tr[1]/td[5]/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/*")
 
     for i in range(1, len(count) + 1):
@@ -78,7 +78,7 @@ def cars(page):
                     nonlocal content
                     content += str(dom)
 
-    doc = html.fromstring(open('../WebPages/rtvslo.si/{}'.format(page), encoding="ansi").read())
+    doc = html.fromstring(open('../../input/rtvslo.si/{}'.format(page), encoding="ansi").read())
     author = doc.xpath("//div[9]/div[3]/div/div[1]/div[1]/div")[0].text
     publishedt = doc.xpath("//div[9]/div[3]/div/div[1]/div[2]")[0].text
     title = doc.xpath("//div[9]/div[3]/div/header/h1")[0].text
@@ -107,7 +107,7 @@ def cars(page):
 
 
 def koce(page):
-    doc = html.fromstring(open('../WebPages/Pzs.si/{}'.format(page), encoding="utf-8").read())
+    doc = html.fromstring(open('../../input/Pzs.si/{}'.format(page), encoding="utf-8").read())
 
     Telefon = doc.xpath("//tbody/tr[1]/td[2]/table/tbody/tr[2]/td[2]")[0].text
     GSM = doc.xpath("//tbody/tr[1]/td[2]/table/tbody/tr[3]/td[2]")[0].text
@@ -169,7 +169,7 @@ cpages = ["Audi A6-rendered-again.html",
 for p in cpages:
     cars(p)
 
-kpages = ["PZS  Triglavski dom na Kredarici.html", "PZS  Vojkova koča na Nanosu.html"]
+kpages = ["pzs1.html", "pzs2.html"]
 for p in kpages:
     koce(p)
 

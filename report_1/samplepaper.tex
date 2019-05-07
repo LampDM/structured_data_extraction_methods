@@ -80,17 +80,15 @@ We only define one regular expression per page type. We extract all of the data 
 
 \section{XPath implementation}
 
-\subsection{jewelry}
+\subsection{Jewelry}
 An initial Xpath expression is called on the input html which selects a \textit{tbody} element. The children of this element represent our jewelry and other items on the page. We count the number of children and with a for loop and extra Xpath expression access each data item that interests us for each child. Any children that are malformed or do not contain the items we're interested in (such as price etc.) encounter an exception as the Xpath expression throws an error and are automatically not processed. Afterwards some minor post-processing of the acquired strings is done and the json is created.
-\subsubsection{Output}
+
 
 \subsection{Cars}
 The items Title, SubTitle, Author, PublishedTime and Lead are all collected via seperate XPath expressions on the input html as both pages have the same structure when it comes to them. The main difference between the two pages is the structure of the article body from which we've derived our Content item. We handle this by first extracting an article body tag which contains all the contents we need. Afterwards we give the extracted element as an argument to our function \textit{intr} which recursively iterates through the tag structure and appends all encountered text into a \textit{nonlocal} string. The string is then briefly processed and added to our json output.
-\subsubsection{output1}
-\subsubsection{output2}
-\subsection{koce}
-\subsubsection{output1}
-\subsubsection{output2}
+
+\subsection{Koce}
+As the two chosen pages are quite similar to each other each chosen element is directly collected with a seperate xpath expression. If the element does not exist or has a different structure an exception is triggered and we catch it by ignoring the required field. If we had had more varied examples of pages we would've made the code even more robust.
 
 \section{RoadRunner like implementation}
 
